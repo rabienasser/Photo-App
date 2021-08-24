@@ -11,8 +11,8 @@ class App extends React.Component {
                <Route path="/search/searchId" />
                <Route path="/photo/:photoId" />
                <Route path="/user/:userId" exact />
-               <Route path="/user/:userId/collections" />
-               <Route path="/user/:userId/users" />
+               <Route path="/user/collections/:userId" />
+               <Route path="/user/users/:userId" />
             </Switch>
          </div>
       );
