@@ -1,4 +1,5 @@
 import React from "react";
+import Home from "./pages/Home/Home";
 import { Switch, Route } from "react-router-dom";
 
 class App extends React.Component {
@@ -6,7 +7,7 @@ class App extends React.Component {
       return (
          <div className="App">
             <Switch>
-               <Route path="/" exact />
+               <Route path="/" component={Home} exact />
                <Route path="/favorites" />
                <Route path="/search/searchId" />
                <Route path="/photo/:photoId" />
