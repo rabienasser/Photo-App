@@ -6,7 +6,7 @@ import Photo from "../../components/Photo/Photo";
 class Home extends React.Component {
    state = {
       photoData: null,
-      page: 2,
+      page: 1,
    };
 
    loadInitialPhotos = async () => {
@@ -29,15 +29,22 @@ class Home extends React.Component {
          const { data } = res;
          this.setState({
             photoData: [...this.state.photoData, ...data],
-            page: this.state.page + 1,
          });
       } catch (err) {
          console.log(err);
       }
    };
 
+   changePage = () => {
+      this.setState({ page: this.state.page + 1 });
+   };
+
    componentDidMount() {
       this.loadInitialPhotos();
+   }
+
+   componentDidUpdate(prevProps, prevState) {
+      if (prevState.page !== this.state.page) this.loadMorePhotos();
    }
 
    render() {
@@ -47,7 +54,7 @@ class Home extends React.Component {
             {photoData && (
                <InfiniteScroll
                   dataLength={photoData.length}
-                  next={() => this.loadMorePhotos()}
+                  next={() => this.changePage()}
                   hasMore={true}
                   loader={<h4>Loading...</h4>}
                >
