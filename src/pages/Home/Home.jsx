@@ -10,9 +10,8 @@ class Home extends React.Component {
 
     loadRandomPhotos = async () => {
         try {
-            const res = await axios(`https://api.unsplash.com/photos/random?count=30&client_id=${process.env.REACT_APP_API_KEY}`)
+            const res = await axios(`https://api.unsplash.com/photos?order_by=latest&per_page=20&client_id=${process.env.REACT_APP_API_KEY}`)
             const { data } = res
-            console.log(data)
             this.setState({ photoData: data })
         } catch (err) {
             console.log(err)
