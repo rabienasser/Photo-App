@@ -28,7 +28,7 @@ class Home extends React.Component {
          );
          const { data } = res;
          this.setState({
-            photoData: this.state.photoData.concat(data),
+            photoData: [...this.state.photoData, ...data],
             page: this.state.page + 1,
          });
       } catch (err) {
