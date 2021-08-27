@@ -16,6 +16,7 @@ class Home extends React.Component {
          );
          const { data } = res;
          this.setState({ photoData: data });
+         console.log(this.props);
       } catch (err) {
          console.log(err);
       }
