@@ -9,7 +9,6 @@ class Photo extends React.Component {
 
    handleClick = () => {
       this.setState({ active: true });
-      console.log(this.props.photo);
    };
 
    closePhoto = () => {
