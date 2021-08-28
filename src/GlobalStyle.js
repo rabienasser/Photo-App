@@ -19,4 +19,13 @@ export const GlobalStyle = createGlobalStyle`
    a {
       text-decoration: none;
    }
+
+   img {
+      border-radius: 10px;
+   }
+
+   button {
+      background: none;
+      border: none;
+   }
 `;

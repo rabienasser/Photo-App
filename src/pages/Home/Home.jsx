@@ -1,7 +1,9 @@
 import React from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
+import Masonry from "react-masonry-css";
 import Photo from "../../components/Photo/Photo";
+import { Container } from "./Home.styles";
 
 class Home extends React.Component {
    state = {
@@ -50,7 +52,7 @@ class Home extends React.Component {
    render() {
       const { photoData } = this.state;
       return (
-         <div>
+         <Container>
             {photoData && (
                <InfiniteScroll
                   dataLength={photoData.length}
@@ -58,13 +60,19 @@ class Home extends React.Component {
                   hasMore={true}
                   loader={<h4>Loading...</h4>}
                >
-                  {photoData &&
-                     photoData.map((photo) => (
-                        <Photo photo={photo} key={photo.id} />
-                     ))}
+                  <Masonry
+                     breakpointCols={3}
+                     className="my-masonry-grid"
+                     columnClassName="my-masonry-grid_column"
+                  >
+                     {photoData &&
+                        photoData.map((photo) => (
+                           <Photo photo={photo} key={photo.id} />
+                        ))}
+                  </Masonry>
                </InfiniteScroll>
             )}
-         </div>
+         </Container>
       );
    }
 }

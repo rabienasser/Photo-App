@@ -5,7 +5,7 @@ export const StyledNav = styled.nav`
    justify-content: space-between;
    align-items: center;
    width: 65%;
-   margin: 10px auto 50px;
+   margin: 10px auto 20px;
 `;
 
 export const NavIcons = styled.ul`
