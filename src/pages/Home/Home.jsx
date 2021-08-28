@@ -66,8 +66,14 @@ class Home extends React.Component {
                      columnClassName="my-masonry-grid_column"
                   >
                      {photoData &&
-                        photoData.map((photo) => (
-                           <Photo photo={photo} key={photo.id} />
+                        photoData.map((photo, inx, photoArr) => (
+                           <Photo
+                              photo={photo}
+                              key={photo.id}
+                              photoArr={photoArr}
+                              changePage={this.changePage}
+                              loadMorePhotos={this.loadMorePhotos}
+                           />
                         ))}
                   </Masonry>
                </InfiniteScroll>

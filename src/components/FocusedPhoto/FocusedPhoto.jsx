@@ -15,13 +15,16 @@ import {
 class FocusedPhoto extends React.Component {
    render() {
       const {
-         photo: {
+         activePhoto: {
             user: { profile_image, name },
             likes,
+            urls,
+            description,
          },
-         urls,
-         description,
+         activePhoto,
          closePhoto,
+         handleNextPhoto,
+         handlePreviousPhoto,
       } = this.props;
       return (
          <Overlay>
@@ -37,7 +40,7 @@ class FocusedPhoto extends React.Component {
                </TopRow>
 
                <MiddleRow>
-                  <button>
+                  <button onClick={() => handlePreviousPhoto(activePhoto)}>
                      <img
                         className="arrow left"
                         src={rightArrow}
@@ -45,7 +48,7 @@ class FocusedPhoto extends React.Component {
                      />
                   </button>
                   <img src={urls.small} alt={description} />
-                  <button>
+                  <button onClick={() => handleNextPhoto(activePhoto)}>
                      <img className="arrow" src={rightArrow} alt="Next" />
                   </button>
                </MiddleRow>

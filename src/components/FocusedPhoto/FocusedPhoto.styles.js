@@ -50,6 +50,7 @@ export const MiddleRow = styled.div`
    justify-content: space-between;
    align-items: center;
    text-align: center;
+   padding: 20px;
    height: 80%;
 
    img {
