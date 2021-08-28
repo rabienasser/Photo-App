@@ -1,30 +1,45 @@
-import React from 'react'
-import FocusedPhoto from '../FocusedPhoto/FocusedPhoto'
+import React from "react";
+import FocusedPhoto from "../FocusedPhoto/FocusedPhoto";
+import { StyledPhoto } from "./Photo.styles";
 
 class Photo extends React.Component {
-    state = {
-        active: false,
-    }
+   state = {
+      active: false,
+   };
 
-    handleClick = () => {
-        this.setState({ active: true })
-    }
+   handleClick = () => {
+      this.setState({ active: true });
+   };
 
-    closePhoto = () => {
-        this.setState({ active: false })
-    }
+   closePhoto = () => {
+      this.setState({ active: false });
+   };
 
-    render() {
-        const { photo, photo: { urls, description } } = this.props
-        const { active } = this.state
-        return (
-            <>
-                <img onClick={this.handleClick} src={urls.small}  alt={description} />
+   render() {
+      const {
+         photo,
+         photo: { urls, description },
+      } = this.props;
+      const { active } = this.state;
+      return (
+         <>
+            <StyledPhoto
+               onClick={this.handleClick}
+               src={urls.small}
+               alt={description}
+            />
 
-                {active && <FocusedPhoto photo={photo} closePhoto={this.closePhoto} />}
-            </>
-        )
-    }
+            {active && (
+               <FocusedPhoto
+                  photo={photo}
+                  urls={urls}
+                  description={description}
+                  closePhoto={this.closePhoto}
+               />
+            )}
+         </>
+      );
+   }
 }
 
-export default Photo
+export default Photo;
