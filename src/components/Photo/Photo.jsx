@@ -14,10 +14,9 @@ class Photo extends React.Component {
 
    handleNextPhoto = (photo) => {
       const idx = this.props.photoArr.indexOf(photo) + 1;
-      let nextPhoto = this.props.photoArr.filter(
+      let nextPhoto = this.props.photoArr.find(
          (el) => this.props.photoArr.indexOf(el) === idx
       );
-      nextPhoto = nextPhoto[0];
 
       if (
          this.props.photoArr.indexOf(nextPhoto) ===
@@ -33,10 +32,9 @@ class Photo extends React.Component {
          this.props.photoArr.indexOf(photo) === 0
             ? this.props.photoArr.length - 1
             : this.props.photoArr.indexOf(photo) - 1;
-      let prevPhoto = this.props.photoArr.filter(
+      let prevPhoto = this.props.photoArr.find(
          (el) => this.props.photoArr.indexOf(el) === idx
       );
-      prevPhoto = prevPhoto[0];
       this.setState({ activePhoto: prevPhoto });
    };
 
