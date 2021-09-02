@@ -1,12 +1,19 @@
 import React from "react";
 import styled from "styled-components";
+import { pageAnimation } from "../../animation";
+import { motion } from "framer-motion";
 
 class SearchResult extends React.Component {
    render() {
       return (
-         <div>
+         <motion.div
+            variants={pageAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+         >
             <Result>{this.props.match.params.searchId}</Result>
-         </div>
+         </motion.div>
       );
    }
 }

@@ -4,6 +4,7 @@ import SearchResult from "./pages/SearchResult/SearchResult";
 import Navbar from "./components/Navbar/Navbar";
 import { Switch, Route } from "react-router-dom";
 import { GlobalStyle } from "./GlobalStyle";
+import { AnimatePresence } from "framer-motion";
 
 class App extends React.Component {
    render() {
@@ -11,15 +12,17 @@ class App extends React.Component {
          <div className="App">
             <GlobalStyle />
             <Navbar />
-            <Switch>
-               <Route path="/" component={Home} exact />
-               <Route path="/favorites" />
-               <Route path="/search/:searchId" component={SearchResult} />
-               <Route path="/photo/:photoId" />
-               <Route path="/user/:userId" exact />
-               <Route path="/user/collections/:userId" />
-               <Route path="/user/users/:userId" />
-            </Switch>
+            <AnimatePresence exitBeforeEnter>
+               <Switch>
+                  <Route path="/" component={Home} exact />
+                  <Route path="/favorites" />
+                  <Route path="/search/:searchId" component={SearchResult} />
+                  <Route path="/photo/:photoId" />
+                  <Route path="/user/:userId" exact />
+                  <Route path="/user/collections/:userId" />
+                  <Route path="/user/users/:userId" />
+               </Switch>
+            </AnimatePresence>
          </div>
       );
    }

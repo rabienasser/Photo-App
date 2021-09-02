@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { motion } from "framer-motion";
 
 export const Overlay = styled.div`
    position: fixed;
@@ -13,7 +14,7 @@ export const Overlay = styled.div`
    z-index: 10;
 `;
 
-export const Container = styled.div`
+export const Modal = styled(motion.div)`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
@@ -27,6 +28,15 @@ export const Container = styled.div`
       width: 30px;
       cursor: pointer;
    }
+`;
+
+export const ContentContainer = styled(motion.div)`
+   height: 100%;
+   width: 100%;
+`;
+
+export const ModalContent = styled(motion.div)`
+   height: 100%;
 `;
 
 export const TopRow = styled.div`
@@ -61,13 +71,9 @@ export const MiddleRow = styled.div`
    }
 
    .arrow {
-      height: 30px;
-      width: 30px;
+      height: 25px;
+      width: 25px;
       cursor: pointer;
-   }
-
-   .left {
-      transform: rotate(180deg);
    }
 `;
 
