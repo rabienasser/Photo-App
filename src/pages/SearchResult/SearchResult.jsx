@@ -1,6 +1,6 @@
 import React from "react";
 import styled from "styled-components";
-import { pageAnimation } from "../../animation";
+import { pageAnimation } from "animation";
 import { motion } from "framer-motion";
 
 class SearchResult extends React.Component {

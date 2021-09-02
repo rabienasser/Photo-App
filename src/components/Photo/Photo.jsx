@@ -1,5 +1,5 @@
 import React from "react";
-import FocusedPhoto from "../FocusedPhoto/FocusedPhoto";
+import { FocusedPhoto } from "components";
 import { StyledPhoto } from "./Photo.styles";
 
 class Photo extends React.Component {

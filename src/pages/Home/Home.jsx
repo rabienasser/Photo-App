@@ -2,11 +2,11 @@ import React from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
-import Photo from "../../components/Photo/Photo";
 import LoadingBar from "react-top-loading-bar";
-import { Container } from "./Home.styles";
-import { pageAnimation } from "../../animation";
+import { pageAnimation } from "animation";
 import { motion } from "framer-motion";
+import { Photo } from "components";
+import { Container } from "./Home.styles";
 
 class Home extends React.Component {
    state = {

@@ -1,9 +1,8 @@
 import React from "react";
-import Home from "./pages/Home/Home";
-import SearchResult from "./pages/SearchResult/SearchResult";
-import Navbar from "./components/Navbar/Navbar";
 import { Switch, Route } from "react-router-dom";
-import { GlobalStyle } from "./GlobalStyle";
+import { Home, SearchResult } from "pages";
+import { Navbar } from "components";
+import { GlobalStyle } from "GlobalStyle";
 import { AnimatePresence } from "framer-motion";
 
 class App extends React.Component {

@@ -1,12 +1,12 @@
 import React from "react";
-import homePage from "../../assets/home-page.png";
-import search from "../../assets/search.png";
-import camera from "../../assets/camera.png";
-import favorites from "../../assets/favorites.png";
-import theme from "../../assets/theme.png";
-import NavbarIcon from "../NavbarIcon/NavbarIcon";
-import { StyledNav, NavIcons, HomeIcon, SearchInput } from "./Navbar.styles";
+import homePage from "assets/home-page.png";
+import search from "assets/search.png";
+import camera from "assets/camera.png";
+import favorites from "assets/favorites.png";
+import theme from "assets/theme.png";
 import { Link, NavLink, withRouter } from "react-router-dom";
+import { NavbarIcon } from "components";
+import { StyledNav, NavIcons, HomeIcon, SearchInput } from "./Navbar.styles";
 
 class Navbar extends React.Component {
    state = {

@@ -1,7 +1,7 @@
 import React from "react";
-import close from "../../assets/close.png";
-import star from "../../assets/star.png";
-import heart from "../../assets/heart.png";
+import close from "assets/close.png";
+import star from "assets/star.png";
+import heart from "assets/heart.png";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
 import {
