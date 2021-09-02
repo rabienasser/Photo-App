@@ -2,13 +2,17 @@ import React from "react";
 import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
-import Photo from "../../components/Photo/Photo";
+import LoadingBar from "react-top-loading-bar";
+import { pageAnimation } from "animation";
+import { motion } from "framer-motion";
+import { Photo } from "components";
 import { Container } from "./Home.styles";
 
 class Home extends React.Component {
    state = {
       photoData: null,
       page: 1,
+      progress: 0,
    };
 
    loadInitialPhotos = async () => {
@@ -31,6 +35,7 @@ class Home extends React.Component {
          const { data } = res;
          this.setState({
             photoData: [...this.state.photoData, ...data],
+            progress: 100,
          });
       } catch (err) {
          console.log(err);
@@ -52,33 +57,46 @@ class Home extends React.Component {
    render() {
       const { photoData } = this.state;
       return (
-         <Container>
-            {photoData && (
-               <InfiniteScroll
-                  dataLength={photoData.length}
-                  next={() => this.changePage()}
-                  hasMore={true}
-                  loader={<h4>Loading...</h4>}
-               >
-                  <Masonry
-                     breakpointCols={3}
-                     className="my-masonry-grid"
-                     columnClassName="my-masonry-grid_column"
+         <motion.div
+            variants={pageAnimation}
+            initial="hidden"
+            animate="show"
+            exit="exit"
+         >
+            <LoadingBar
+               color="#6958F2"
+               progress={this.state.progress}
+               onLoaderFinished={() => this.setState({ progress: 0 })}
+               loaderSpeed="1000"
+            />
+            <Container>
+               {photoData && (
+                  <InfiniteScroll
+                     dataLength={photoData.length}
+                     next={() => this.changePage()}
+                     hasMore={true}
+                     loader={<h4>Loading...</h4>}
                   >
-                     {photoData &&
-                        photoData.map((photo, inx, photoArr) => (
-                           <Photo
-                              photo={photo}
-                              key={photo.id}
-                              photoArr={photoArr}
-                              changePage={this.changePage}
-                              loadMorePhotos={this.loadMorePhotos}
-                           />
-                        ))}
-                  </Masonry>
-               </InfiniteScroll>
-            )}
-         </Container>
+                     <Masonry
+                        breakpointCols={3}
+                        className="my-masonry-grid"
+                        columnClassName="my-masonry-grid_column"
+                     >
+                        {photoData &&
+                           photoData.map((photo, inx, photoArr) => (
+                              <Photo
+                                 photo={photo}
+                                 key={photo.id}
+                                 photoArr={photoArr}
+                                 changePage={this.changePage}
+                                 loadMorePhotos={this.loadMorePhotos}
+                              />
+                           ))}
+                     </Masonry>
+                  </InfiniteScroll>
+               )}
+            </Container>
+         </motion.div>
       );
    }
 }
