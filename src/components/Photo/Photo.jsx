@@ -54,11 +54,9 @@ class Photo extends React.Component {
       const { active, activePhoto } = this.state;
       return (
          <>
-            <StyledPhoto
-               onClick={() => this.handleClick(photo)}
-               src={urls.small}
-               alt={description}
-            />
+            <StyledPhoto onClick={() => this.handleClick(photo)}>
+               <img src={urls.small} alt={description} />
+            </StyledPhoto>
 
             {active && (
                <FocusedPhoto
