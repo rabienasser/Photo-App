@@ -15,7 +15,7 @@ const Navbar = (props) => {
       setInputValue(e.target.value);
    };
 
-   const handleSubmit = (e, inputValue) => {
+   const handleSubmit = (e) => {
       e.preventDefault();
 
       props.history.push(`/search/${inputValue}`);
