@@ -5,8 +5,9 @@ import Masonry from "react-masonry-css";
 import LoadingBar from "react-top-loading-bar";
 import { pageAnimation } from "animation";
 import { motion } from "framer-motion";
+import { fetchHomePhotos } from "utils/api";
 import { Photo } from "components";
-import { Container } from "./Home.styles";
+import { Container } from "GlobalStyle";
 
 class Home extends React.Component {
    state = {
@@ -17,9 +18,7 @@ class Home extends React.Component {
 
    loadInitialPhotos = async () => {
       try {
-         const res = await axios(
-            `https://api.unsplash.com/photos?order_by=latest&page=1&client_id=${process.env.REACT_APP_API_KEY}`
-         );
+         const res = await axios(fetchHomePhotos(1));
          const { data } = res;
          this.setState({ photoData: data });
       } catch (err) {
@@ -29,9 +28,7 @@ class Home extends React.Component {
 
    loadMorePhotos = async () => {
       try {
-         const res = await axios(
-            `https://api.unsplash.com/photos?order_by=latest&page=${this.state.page}&client_id=${process.env.REACT_APP_API_KEY}`
-         );
+         const res = await axios(fetchHomePhotos(this.state.page));
          const { data } = res;
          this.setState({
             photoData: [...this.state.photoData, ...data],
@@ -83,7 +80,7 @@ class Home extends React.Component {
                         columnClassName="my-masonry-grid_column"
                      >
                         {photoData &&
-                           photoData.map((photo, inx, photoArr) => (
+                           photoData.map((photo, idx, photoArr) => (
                               <Photo
                                  photo={photo}
                                  key={photo.id}

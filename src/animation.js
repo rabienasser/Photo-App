@@ -19,6 +19,24 @@ export const pageAnimation = {
    },
 };
 
+export const slideLeftAnim = {
+   hidden: {
+      x: 800,
+   },
+   show: {
+      x: 0,
+      transition: {
+         duration: 0.75,
+      },
+   },
+   exit: {
+      x: 800,
+      transition: {
+         duration: 0.8,
+      },
+   },
+};
+
 export const openModal = {
    hidden: {
       opacity: 0,
