@@ -1,61 +1,83 @@
 import React, { useState } from "react";
 import { FocusedPhoto } from "components";
 import { StyledPhoto } from "./Photo.styles";
+import { useDispatch, useSelector, connect } from "react-redux";
+import { openPhoto } from "store/photo/actions";
 
 const Photo = ({
+   props,
    photo,
    photo: { urls, description },
-   photoArr,
-   changePage,
-   loadMorePhotos,
+   // photoArr,
+   // changePage,
+   // loadMorePhotos,
 }) => {
-   const [active, setActive] = useState(false);
-   const [activePhoto, setActivePhoto] = useState("");
+   // const [active, setActive] = useState(false);
+   // const [activePhoto, setActivePhoto] = useState("");
 
-   const handleClick = (photo) => {
-      setActive(true);
-      setActivePhoto(photo);
-   };
+   // const dispatch = useDispatch();
+   // const active = useSelector((state) => state.photo.active);
+   // const activePhoto = useSelector((state) => state.photo.activePhoto);
 
-   const handleNextPhoto = (photo) => {
-      const idx = photoArr.indexOf(photo) + 1;
-      let nextPhoto = photoArr.find((el) => photoArr.indexOf(el) === idx);
+   // const openPhoto = (photo) => {
+   //    // setActive(true);
+   //    // setActivePhoto(photo);
 
-      if (photoArr.indexOf(nextPhoto) === photoArr.length - 1) {
-         changePage();
-      }
-      setActivePhoto(nextPhoto);
-   };
+   //    // dispatch(openPhoto(photo));
+   //    props.openPhoto(photo);
+   // };
 
-   const handlePreviousPhoto = (photo) => {
-      const idx =
-         photoArr.indexOf(photo) === 0
-            ? photoArr.length - 1
-            : photoArr.indexOf(photo) - 1;
-      let prevPhoto = photoArr.find((el) => photoArr.indexOf(el) === idx);
-      setActivePhoto(prevPhoto);
-   };
+   // const handleNextPhoto = (photo) => {
+   //    const idx = photoArr.indexOf(photo) + 1;
+   //    let nextPhoto = photoArr.find((el) => photoArr.indexOf(el) === idx);
 
-   const closePhoto = () => {
-      setActive(false);
-   };
+   //    if (photoArr.indexOf(nextPhoto) === photoArr.length - 1) {
+   //       changePage();
+   //    }
+   //    setActivePhoto(nextPhoto);
+   // };
+
+   // const handlePreviousPhoto = (photo) => {
+   //    const idx =
+   //       photoArr.indexOf(photo) === 0
+   //          ? photoArr.length - 1
+   //          : photoArr.indexOf(photo) - 1;
+   //    let prevPhoto = photoArr.find((el) => photoArr.indexOf(el) === idx);
+   //    setActivePhoto(prevPhoto);
+   // };
+
+   // const closePhoto = () => {
+   //    // dispatch(closePhoto());
+   //    props.closePhoto();
+   // };
 
    return (
       <>
-         <StyledPhoto onClick={() => handleClick(photo)}>
+         <StyledPhoto onClick={() => props.openPhoto(photo)}>
             <img src={urls.small} alt={description} />
          </StyledPhoto>
 
-         {active && (
+         {props.active && (
             <FocusedPhoto
-               activePhoto={activePhoto}
-               closePhoto={closePhoto}
-               handleNextPhoto={handleNextPhoto}
-               handlePreviousPhoto={handlePreviousPhoto}
+               activePhoto={props.activePhoto}
+               // closePhoto={closePhoto}
+               // handleNextPhoto={handleNextPhoto}
+               // handlePreviousPhoto={handlePreviousPhoto}
             />
          )}
       </>
    );
 };
 
-export default Photo;
+const mapStateToProps = (state) => {
+   return {
+      active: state.photo.active,
+      activePhoto: state.photo.activePhoto,
+   };
+};
+
+const mapDispatchToProps = {
+   openPhoto,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(Photo);

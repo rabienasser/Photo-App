@@ -1,0 +1,4 @@
+export const OPEN_PHOTO = "OPEN_PHOTO";
+export const CLOSE_PHOTO = "CLOSE_PHOTO";
+export const CLICK_NEXT_PHOTO = "CLICK_NEXT_PHOTO";
+export const CLICK_PREVIOUS_PHOTO = "CLICK_PREVIOUS_PHOTO";

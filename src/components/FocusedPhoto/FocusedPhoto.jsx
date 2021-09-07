@@ -16,8 +16,15 @@ import {
 } from "./FocusedPhoto.styles";
 import { motion, AnimatePresence } from "framer-motion";
 import { openModal, displayModalContent, slideAnim } from "../../animation";
+import { connect } from "react-redux";
+import {
+   closePhoto,
+   clickNextPhoto,
+   clickPreviousPhoto,
+} from "store/photo/actions";
 
 const FocusedPhoto = ({
+   props,
    activePhoto: {
       user: { profile_image, name },
       likes,
@@ -25,9 +32,9 @@ const FocusedPhoto = ({
       description,
    },
    activePhoto,
-   closePhoto,
-   handleNextPhoto,
-   handlePreviousPhoto,
+   // closePhoto,
+   // handleNextPhoto,
+   // handlePreviousPhoto,
 }) => {
    return (
       <Overlay>
@@ -46,14 +53,14 @@ const FocusedPhoto = ({
                            <img src={profile_image.small} alt={name} />
                            <p>{name}</p>
                         </RightMarg>
-                        <button onClick={() => closePhoto()}>
+                        <button onClick={() => props.closePhoto()}>
                            <img className="icon" src={close} alt="close" />
                         </button>
                      </TopRow>
 
                      <MiddleRow>
                         <motion.button
-                           onClick={() => handlePreviousPhoto(activePhoto)}
+                           // onClick={() => handlePreviousPhoto(activePhoto)}
                            whileHover={{
                               scale: 1.2,
                               transition: { duration: 0.3 },
@@ -67,7 +74,7 @@ const FocusedPhoto = ({
                         </motion.button>
                         <img src={urls.small} alt={description} />
                         <motion.button
-                           onClick={() => handleNextPhoto(activePhoto)}
+                           // onClick={() => handleNextPhoto(activePhoto)}
                            whileHover={{
                               scale: 1.2,
                               transition: { duration: 0.3 },
@@ -103,4 +110,17 @@ const FocusedPhoto = ({
    );
 };
 
-export default FocusedPhoto;
+const mapStateToProps = (state) => {
+   return {
+      active: state.photo.active,
+      activePhoto: state.photo.activePhoto,
+   };
+};
+
+const mapDispatchToProps = {
+   closePhoto,
+   clickNextPhoto,
+   clickPreviousPhoto,
+};
+
+export default connect(mapStateToProps, mapDispatchToProps)(FocusedPhoto);

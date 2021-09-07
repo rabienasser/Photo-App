@@ -1,51 +1,55 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
 import LoadingBar from "react-top-loading-bar";
+import useLoadingBar from "utils/loadingBar";
 import { pageAnimation } from "animation";
 import { motion } from "framer-motion";
-import { fetchHomePhotos } from "utils/api";
 import { Photo } from "components";
 import { Container } from "GlobalStyle";
+import { useDispatch, useSelector } from "react-redux";
+import { loadInitialPhotos, changePage } from "store/homePhotos/actions";
 
-const Home = () => {
-   const [photoData, setPhotoData] = useState(null);
-   const [page, setPage] = useState(1);
-   const [progress, setProgress] = useState(0);
+const Home = (props) => {
+   const dispatch = useDispatch();
+   const homePhotos = useSelector((state) => state.homePhotos.photoData);
+   const isLoading = useSelector((state) => state.homePhotos.isLoading);
 
-   const loadInitialPhotos = async () => {
-      try {
-         const res = await axios(fetchHomePhotos(1));
-         const { data } = res;
-         setPhotoData(data);
-      } catch (err) {
-         console.log(err);
-      }
-   };
+   const loadingBar = useRef();
 
-   const loadMorePhotos = async () => {
-      try {
-         const res = await axios(fetchHomePhotos(page));
-         const { data } = res;
-         setPhotoData([...photoData, ...data]);
-         setProgress(100);
-      } catch (err) {
-         console.log(err);
-      }
-   };
+   useLoadingBar(isLoading, loadingBar);
 
-   const changePage = () => {
-      setPage(page + 1);
-   };
+   // const loadInitialPhotos = async () => {
+   //    setIsLoading(true);
+   //    try {
+   //       const res = await axios(fetchHomePhotos(1));
+   //       const { data } = res;
+   //       setPhotoData(data);
+   //       setIsLoading(false);
+   //    } catch (err) {
+   //       console.log(err);
+   //    }
+   // };
+
+   // const loadMorePhotos = async () => {
+   //    setIsLoading(true);
+   //    try {
+   //       const res = await axios(fetchHomePhotos(page));
+   //       const { data } = res;
+   //       setPhotoData([...photoData, ...data]);
+   //       setIsLoading(false);
+   //    } catch (err) {
+   //       console.log(err);
+   //    }
+   // };
+
+   // const changePage = () => {
+   //    setPage(page + 1);
+   // };
 
    useEffect(() => {
-      loadInitialPhotos();
+      dispatch(loadInitialPhotos());
    }, []);
-
-   useEffect(() => {
-      loadMorePhotos();
-   }, [page]);
 
    return (
       <motion.div
@@ -54,17 +58,12 @@ const Home = () => {
          animate="show"
          exit="exit"
       >
-         <LoadingBar
-            color="#6958F2"
-            progress={progress}
-            onLoaderFinished={() => setProgress(0)}
-            loaderSpeed="1000"
-         />
+         <LoadingBar color="#6958f2" ref={loadingBar} />
          <Container>
-            {photoData && (
+            {homePhotos && (
                <InfiniteScroll
-                  dataLength={photoData.length}
-                  next={() => changePage()}
+                  dataLength={homePhotos.length}
+                  next={() => dispatch(changePage())}
                   hasMore={true}
                   loader={<h4>Loading...</h4>}
                >
@@ -73,14 +72,14 @@ const Home = () => {
                      className="my-masonry-grid"
                      columnClassName="my-masonry-grid_column"
                   >
-                     {photoData &&
-                        photoData.map((photo, idx, photoArr) => (
+                     {homePhotos &&
+                        homePhotos.map((photo, idx, photoArr) => (
                            <Photo
                               photo={photo}
                               key={photo.id}
                               photoArr={photoArr}
-                              changePage={changePage}
-                              loadMorePhotos={loadMorePhotos}
+                              // changePage={changePage}
+                              // loadMorePhotos={loadMorePhotos}
                            />
                         ))}
                   </Masonry>

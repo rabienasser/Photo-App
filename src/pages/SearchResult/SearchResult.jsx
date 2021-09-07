@@ -1,7 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useRef } from "react";
 import axios from "axios";
 import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingBar from "react-top-loading-bar";
+import useLoadingBar from "utils/loadingBar";
 import { motion } from "framer-motion";
 import { slideLeftAnim } from "animation";
 import { searchPhotos } from "utils/api";
@@ -14,25 +16,33 @@ const SearchResult = (props) => {
    const [page, setPage] = useState(1);
    const [total, setTotal] = useState(null);
    const [active, setActive] = useState(true);
+   const [isLoading, setIsLoading] = useState(false);
 
+   const loadingBar = useRef();
    let searchTerm = props.match.params.searchId;
 
+   useLoadingBar(isLoading, loadingBar);
+
    const loadInitialPhotos = async () => {
+      setIsLoading(true);
       try {
          const res = await axios(searchPhotos(searchTerm, 1));
          const { data } = res;
          setPhotoData(data.results);
          setTotal(data.total);
+         setIsLoading(false);
       } catch (err) {
          console.log(err);
       }
    };
 
    const loadMorePhotos = async () => {
+      setIsLoading(true);
       try {
          const res = await axios(searchPhotos(searchTerm, page));
          const { data } = res;
          setPhotoData([...photoData, ...data.results]);
+         setIsLoading(false);
       } catch (err) {
          console.log(err);
       }
@@ -62,6 +72,7 @@ const SearchResult = (props) => {
          animate="show"
          exit="exit"
       >
+         <LoadingBar color="#6958f2" ref={loadingBar} />
          <Container>
             {photoData && (
                <InfiniteScroll

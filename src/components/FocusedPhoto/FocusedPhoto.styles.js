@@ -63,8 +63,8 @@ export const MiddleRow = styled.div`
    height: 80%;
 
    img {
-      width: auto;
-      height: 100%;
+      max-width: 100%;
+      max-height: 100%;
       object-fit: cover;
       cursor: pointer;
    }
