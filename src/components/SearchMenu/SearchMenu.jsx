@@ -1,8 +1,11 @@
 import React from "react";
 import { Link } from "react-router-dom";
 import { StyledMenu } from "./SearchMenu.style";
+import { useSelector } from "react-redux";
 
-const SearchMenu = ({ searchTerm, total, active }) => {
+const SearchMenu = ({ searchTerm }) => {
+   const total = useSelector((state) => state.searchResults.total);
+   const active = useSelector((state) => state.searchResults.active);
    return (
       <>
          <h2>

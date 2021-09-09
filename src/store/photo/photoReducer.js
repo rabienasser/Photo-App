@@ -6,8 +6,7 @@ import {
 } from "./types";
 
 const initialState = {
-   active: false,
-   activePhoto: "",
+   selectedPhoto: null,
 };
 
 const photoReducer = (state = initialState, action) => {
@@ -15,18 +14,28 @@ const photoReducer = (state = initialState, action) => {
       case OPEN_PHOTO:
          return {
             ...state,
-            active: true,
-            activePhoto: action.payload,
+            selectedPhoto: action.payload,
          };
       case CLOSE_PHOTO:
          return {
             ...state,
-            active: false,
+            selectedPhoto: null,
          };
       case CLICK_NEXT_PHOTO:
-         return {};
+         let oldIndex = state.selectedPhoto;
+         const nextIndex = oldIndex + 1;
+         return {
+            ...state,
+            selectedPhoto: nextIndex,
+         };
       case CLICK_PREVIOUS_PHOTO:
-         return {};
+         let old_Index = state.selectedPhoto;
+         const prevIndex =
+            old_Index === 0 ? action.payload.length - 1 : old_Index - 1;
+         return {
+            ...state,
+            selectedPhoto: prevIndex,
+         };
       default:
          return state;
    }

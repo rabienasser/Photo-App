@@ -1,17 +1,16 @@
-import React, { useState } from "react";
-import { FocusedPhoto } from "components";
 import { StyledPhoto } from "./Photo.styles";
-import { useDispatch, useSelector, connect } from "react-redux";
+import { useDispatch } from "react-redux";
 import { openPhoto } from "store/photo/actions";
 
 const Photo = ({
-   props,
-   photo,
    photo: { urls, description },
-   // photoArr,
+   index,
    // changePage,
    // loadMorePhotos,
 }) => {
+   const dispatch = useDispatch();
+   // const collectPhotoData = useSelector((state) => state.photo.photoData);
+
    // const [active, setActive] = useState(false);
    // const [activePhoto, setActivePhoto] = useState("");
 
@@ -53,31 +52,35 @@ const Photo = ({
 
    return (
       <>
-         <StyledPhoto onClick={() => props.openPhoto(photo)}>
+         <StyledPhoto
+            onClick={() => {
+               dispatch(openPhoto(index));
+            }}
+         >
             <img src={urls.small} alt={description} />
          </StyledPhoto>
 
-         {props.active && (
+         {/* {props.active && (
             <FocusedPhoto
                activePhoto={props.activePhoto}
                // closePhoto={closePhoto}
                // handleNextPhoto={handleNextPhoto}
                // handlePreviousPhoto={handlePreviousPhoto}
             />
-         )}
+         )} */}
       </>
    );
 };
 
-const mapStateToProps = (state) => {
-   return {
-      active: state.photo.active,
-      activePhoto: state.photo.activePhoto,
-   };
-};
+// const mapStateToProps = (state) => {
+//    return {
+//       selectedPhoto: state.photo.selectedPhoto,
+//    };
+// };
 
-const mapDispatchToProps = {
-   openPhoto,
-};
+// const mapDispatchToProps = {
+//    openPhoto,
+// };
 
-export default connect(mapStateToProps, mapDispatchToProps)(Photo);
+// export default connect(mapStateToProps, mapDispatchToProps)(Photo);
+export default Photo;

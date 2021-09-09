@@ -1,20 +1,20 @@
 import axios from "axios";
-import { fetchHomePhotos } from "utils/api";
+import { searchPhotos } from "utils/api";
 
 import {
-   LOAD_PHOTOS_PENDING,
    LOAD_PHOTOS_SUCCESS,
+   LOAD_PHOTOS_PENDING,
    LOAD_PHOTOS_ERROR,
    CHANGE_PAGE,
-   LOAD_MORE_PHOTOS_PENDING,
    LOAD_MORE_PHOTOS_SUCCESS,
+   LOAD_MORE_PHOTOS_PENDING,
    LOAD_MORE_PHOTOS_ERROR,
 } from "./types";
 
-export const loadInitialPhotos = () => async (dispatch, getState) => {
+export const loadInitialPhotos = (searchTerm) => async (dispatch, getState) => {
    try {
       dispatch({ type: LOAD_PHOTOS_PENDING });
-      const res = await axios(fetchHomePhotos(1));
+      const res = await axios(searchPhotos(searchTerm, 1));
       const { data } = res;
       dispatch({
          type: LOAD_PHOTOS_SUCCESS,
@@ -28,19 +28,19 @@ export const loadInitialPhotos = () => async (dispatch, getState) => {
    }
 };
 
-export const changePage = () => (dispatch, getState) => {
-   dispatch({
+export const changePage = () => {
+   console.log("paged changed");
+   return {
       type: CHANGE_PAGE,
-   });
-   dispatch(loadMorePhotos());
+   };
 };
 
-export const loadMorePhotos = () => async (dispatch, getState) => {
+export const loadMorePhotos = (searchTerm) => async (dispatch, getState) => {
    const state = getState();
-   const newPage = state.homePhotos.page;
+   const page = state.searchResults.page;
    try {
       dispatch({ type: LOAD_MORE_PHOTOS_PENDING });
-      const res = await axios(fetchHomePhotos(newPage));
+      const res = await axios(searchPhotos(searchTerm, page));
       const { data } = res;
       dispatch({
          type: LOAD_MORE_PHOTOS_SUCCESS,

@@ -5,47 +5,20 @@ import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
 import { pageAnimation } from "animation";
 import { motion } from "framer-motion";
-import { Photo } from "components";
+import { Photo, PhotoModal } from "components";
 import { Container } from "GlobalStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { loadInitialPhotos, changePage } from "store/homePhotos/actions";
 
-const Home = (props) => {
+const Home = () => {
    const dispatch = useDispatch();
    const homePhotos = useSelector((state) => state.homePhotos.photoData);
    const isLoading = useSelector((state) => state.homePhotos.isLoading);
+   const isSelected = useSelector((state) => state.photo.selectedPhoto);
 
    const loadingBar = useRef();
 
    useLoadingBar(isLoading, loadingBar);
-
-   // const loadInitialPhotos = async () => {
-   //    setIsLoading(true);
-   //    try {
-   //       const res = await axios(fetchHomePhotos(1));
-   //       const { data } = res;
-   //       setPhotoData(data);
-   //       setIsLoading(false);
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // };
-
-   // const loadMorePhotos = async () => {
-   //    setIsLoading(true);
-   //    try {
-   //       const res = await axios(fetchHomePhotos(page));
-   //       const { data } = res;
-   //       setPhotoData([...photoData, ...data]);
-   //       setIsLoading(false);
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // };
-
-   // const changePage = () => {
-   //    setPage(page + 1);
-   // };
 
    useEffect(() => {
       dispatch(loadInitialPhotos());
@@ -72,20 +45,14 @@ const Home = (props) => {
                      className="my-masonry-grid"
                      columnClassName="my-masonry-grid_column"
                   >
-                     {homePhotos &&
-                        homePhotos.map((photo, idx, photoArr) => (
-                           <Photo
-                              photo={photo}
-                              key={photo.id}
-                              photoArr={photoArr}
-                              // changePage={changePage}
-                              // loadMorePhotos={loadMorePhotos}
-                           />
-                        ))}
+                     {homePhotos?.map((photo, index) => (
+                        <Photo photo={photo} index={index} key={photo.id} />
+                     ))}
                   </Masonry>
                </InfiniteScroll>
             )}
          </Container>
+         {isSelected !== null && <PhotoModal />}
       </motion.div>
    );
 };

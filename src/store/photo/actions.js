@@ -5,10 +5,10 @@ import {
    CLICK_PREVIOUS_PHOTO,
 } from "./types";
 
-export const openPhoto = (photo) => {
+export const openPhoto = (photoIndex) => {
    return {
       type: OPEN_PHOTO,
-      payload: photo,
+      payload: photoIndex,
    };
 };
 
@@ -18,16 +18,17 @@ export const closePhoto = () => {
    };
 };
 
-export const clickNextPhoto = (photo) => {
+export const clickNextPhoto = () => {
    return {
       type: CLICK_NEXT_PHOTO,
-      payload: photo,
    };
 };
 
-export const clickPreviousPhoto = (photo) => {
-   return {
+export const clickPreviousPhoto = () => (dispatch, getState) => {
+   const state = getState();
+   const photoData = state.homePhotos.photoData;
+   dispatch({
       type: CLICK_PREVIOUS_PHOTO,
-      payload: photo,
-   };
+      payload: photoData,
+   });
 };
