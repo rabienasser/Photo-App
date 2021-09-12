@@ -15,17 +15,17 @@ const SearchMenu = ({ searchTerm }) => {
          <p>{total} results found</p>
          <StyledMenu>
             <div>
-               <Link to="/user/:userId" exact>
+               <Link to={`/user/${searchTerm}`}>
                   <li>Users</li>
                </Link>
             </div>
             <div>
-               <Link to={`/search/${searchTerm}`} exact>
+               <Link to={`/search/${searchTerm}`}>
                   <li className={`${active && "active"}`}>Photos</li>
                </Link>
             </div>
             <div>
-               <Link to="/user/collections/:userId" exact>
+               <Link to={`/user/collections/${searchTerm}`}>
                   <li>Collections</li>
                </Link>
             </div>

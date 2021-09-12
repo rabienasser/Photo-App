@@ -6,7 +6,7 @@ import {
 } from "./types";
 
 const initialState = {
-   selectedPhoto: null,
+   selectedPhoto: -1,
 };
 
 const photoReducer = (state = initialState, action) => {
@@ -19,7 +19,7 @@ const photoReducer = (state = initialState, action) => {
       case CLOSE_PHOTO:
          return {
             ...state,
-            selectedPhoto: null,
+            selectedPhoto: -1,
          };
       case CLICK_NEXT_PHOTO:
          let oldIndex = state.selectedPhoto;

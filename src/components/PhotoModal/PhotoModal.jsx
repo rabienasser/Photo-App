@@ -17,19 +17,16 @@ import {
 } from "./PhotoModal.style";
 import { motion } from "framer-motion";
 import { openModal, displayModalContent, fadePhoto } from "../../animation";
-import { useDispatch, useSelector } from "react-redux";
+import { useDispatch } from "react-redux";
 import {
    closePhoto,
    clickNextPhoto,
    clickPreviousPhoto,
 } from "store/photo/actions";
-import { changePage } from "store/homePhotos/actions";
 
-const PhotoModal = () => {
-   const homePhotos = useSelector((state) => state.homePhotos.homePhotoData);
-   const photoIndex = useSelector((state) => state.photo.selectedPhoto);
+const PhotoModal = ({ photos, photoIndex, changePage }) => {
    const dispatch = useDispatch();
-   const photo = homePhotos[photoIndex];
+   const photo = photos[photoIndex];
    return (
       <Overlay>
          <Modal variants={openModal} initial="hidden" animate="visible">
@@ -78,7 +75,7 @@ const PhotoModal = () => {
                      <motion.button
                         onClick={() => {
                            dispatch(clickNextPhoto());
-                           if (photoIndex + 2 === homePhotos.length - 1) {
+                           if (photoIndex + 2 === photos.length - 1) {
                               dispatch(changePage());
                            }
                         }}

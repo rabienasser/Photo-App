@@ -1,4 +1,5 @@
 import React from "react";
+import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
 import { Home, SearchResult } from "pages";
 import { Navbar } from "components";
@@ -10,16 +11,17 @@ class App extends React.Component {
       return (
          <div className="App">
             <GlobalStyle />
+            <ToastContainer />
             <Navbar />
             <AnimatePresence exitBeforeEnter>
                <Switch>
                   <Route path="/" component={Home} exact />
                   <Route path="/favorites" />
-                  <Route path="/search/:searchId" component={SearchResult} />
+                  <Route path="/search/:searchTerm" component={SearchResult} />
+                  <Route path="/search/collections/:searchTerm" />
+                  <Route path="/search/users/:searchTerm" />
                   <Route path="/photo/:photoId" />
                   <Route path="/user/:userId" exact />
-                  <Route path="/user/collections/:userId" />
-                  <Route path="/user/users/:userId" />
                </Switch>
             </AnimatePresence>
          </div>

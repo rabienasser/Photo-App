@@ -7,5 +7,5 @@ export const fetchHomePhotos = (page) => {
 export const searchPhotos = (query, page) => {
    const base = process.env.REACT_APP_ENDPOINT;
    const key = process.env.REACT_APP_API_KEY;
-   return `${base}/search/photos?query=${query}&page=${page}&client_id=${key}`;
+   return `${base}/search/photos?query=${query}&per_page=15&page=${page}&client_id=${key}`;
 };

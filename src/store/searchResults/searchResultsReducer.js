@@ -3,7 +3,6 @@ import {
    LOAD_PHOTOS_PENDING,
    LOAD_PHOTOS_ERROR,
    CHANGE_SEARCH_PAGE,
-   ADD_PHOTOS_SUCCESS,
    CAPTURE_SEARCH_TERM,
    NEW_SEARCH_SUCCESS,
 } from "./types";
@@ -15,6 +14,7 @@ const initialState = {
    page: 1,
    active: false,
    total: null,
+   error: false,
 };
 
 const searchResultsReducer = (state = initialState, action) => {
@@ -42,12 +42,6 @@ const searchResultsReducer = (state = initialState, action) => {
             ...state,
             error: true,
             isLoading: false,
-         };
-      case ADD_PHOTOS_SUCCESS:
-         return {
-            ...state,
-            isLoading: false,
-            photoData: [...state.photoData, ...action.payload.results],
          };
       case CHANGE_SEARCH_PAGE:
          return {
