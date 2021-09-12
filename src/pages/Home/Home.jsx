@@ -8,11 +8,11 @@ import { motion } from "framer-motion";
 import { Photo, PhotoModal } from "components";
 import { Container } from "GlobalStyle";
 import { useDispatch, useSelector } from "react-redux";
-import { loadInitialPhotos, changePage } from "store/homePhotos/actions";
+import { loadHomePhotos, changePage } from "store/homePhotos/actions";
 
 const Home = () => {
    const dispatch = useDispatch();
-   const homePhotos = useSelector((state) => state.homePhotos.photoData);
+   const homePhotos = useSelector((state) => state.homePhotos.homePhotoData);
    const isLoading = useSelector((state) => state.homePhotos.isLoading);
    const isSelected = useSelector((state) => state.photo.selectedPhoto);
 
@@ -21,7 +21,7 @@ const Home = () => {
    useLoadingBar(isLoading, loadingBar);
 
    useEffect(() => {
-      dispatch(loadInitialPhotos());
+      dispatch(loadHomePhotos());
    }, []);
 
    return (

@@ -26,7 +26,7 @@ import {
 import { changePage } from "store/homePhotos/actions";
 
 const PhotoModal = () => {
-   const homePhotos = useSelector((state) => state.homePhotos.photoData);
+   const homePhotos = useSelector((state) => state.homePhotos.homePhotoData);
    const photoIndex = useSelector((state) => state.photo.selectedPhoto);
    const dispatch = useDispatch();
    const photo = homePhotos[photoIndex];

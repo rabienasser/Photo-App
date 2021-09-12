@@ -1,15 +1,16 @@
 import {
-   LOAD_PHOTOS_PENDING,
    LOAD_PHOTOS_SUCCESS,
+   LOAD_PHOTOS_PENDING,
    LOAD_PHOTOS_ERROR,
-   CHANGE_PAGE,
-   LOAD_MORE_PHOTOS_PENDING,
-   LOAD_MORE_PHOTOS_SUCCESS,
-   LOAD_MORE_PHOTOS_ERROR,
+   CHANGE_SEARCH_PAGE,
+   ADD_PHOTOS_SUCCESS,
+   CAPTURE_SEARCH_TERM,
+   NEW_SEARCH_SUCCESS,
 } from "./types";
 
 const initialState = {
-   photoData: null,
+   searchTerm: "",
+   photoData: [],
    isLoading: false,
    page: 1,
    active: false,
@@ -18,6 +19,11 @@ const initialState = {
 
 const searchResultsReducer = (state = initialState, action) => {
    switch (action.type) {
+      case CAPTURE_SEARCH_TERM:
+         return {
+            ...state,
+            searchTerm: action.payload,
+         };
       case LOAD_PHOTOS_PENDING:
          return {
             ...state,
@@ -27,35 +33,32 @@ const searchResultsReducer = (state = initialState, action) => {
          return {
             ...state,
             isLoading: false,
-            photoData: action.payload.results,
+            photoData: [...state.photoData, ...action.payload.results],
             active: true,
             total: action.payload.total,
          };
       case LOAD_PHOTOS_ERROR:
          return {
             ...state,
-            isLoading: true,
+            error: true,
+            isLoading: false,
          };
-      case CHANGE_PAGE:
-         return {
-            ...state,
-            page: state.page + 1,
-         };
-      case LOAD_MORE_PHOTOS_PENDING:
-         return {
-            ...state,
-            isLoading: true,
-         };
-      case LOAD_MORE_PHOTOS_SUCCESS:
+      case ADD_PHOTOS_SUCCESS:
          return {
             ...state,
             isLoading: false,
             photoData: [...state.photoData, ...action.payload.results],
          };
-      case LOAD_MORE_PHOTOS_ERROR:
+      case CHANGE_SEARCH_PAGE:
          return {
             ...state,
-            isLoading: true,
+            page: state.page + 1,
+         };
+      case NEW_SEARCH_SUCCESS:
+         return {
+            ...state,
+            isLoading: false,
+            photoData: [...action.payload.results],
          };
       default:
          return state;

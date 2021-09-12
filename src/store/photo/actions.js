@@ -26,7 +26,7 @@ export const clickNextPhoto = () => {
 
 export const clickPreviousPhoto = () => (dispatch, getState) => {
    const state = getState();
-   const photoData = state.homePhotos.photoData;
+   const photoData = state.homePhotos.homePhotoData;
    dispatch({
       type: CLICK_PREVIOUS_PHOTO,
       payload: photoData,

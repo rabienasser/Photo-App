@@ -10,15 +10,14 @@ import { Container } from "GlobalStyle";
 import { SearchResults } from "./SearchResult.style";
 import { useDispatch, useSelector } from "react-redux";
 import {
-   loadInitialPhotos,
-   changePage,
-   loadMorePhotos,
+   loadSearchPagePhotos,
+   changeSearchPage,
+   newSearch,
 } from "store/searchResults/actions";
 
 const SearchResult = (props) => {
    const photoData = useSelector((state) => state.searchResults.photoData);
    const isLoading = useSelector((state) => state.searchResults.isLoading);
-   const page = useSelector((state) => state.searchResults.page);
    const dispatch = useDispatch();
 
    const loadingBar = useRef();
@@ -26,60 +25,13 @@ const SearchResult = (props) => {
 
    useLoadingBar(isLoading, loadingBar);
 
-   // const loadInitialPhotos = async () => {
-   //    setIsLoading(true);
-   //    try {
-   //       const res = await axios(searchPhotos(searchTerm, 1));
-   //       const { data } = res;
-   //       setPhotoData(data.results);
-   //       setTotal(data.total);
-   //       setIsLoading(false);
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // };
-
-   // const loadMorePhotos = async () => {
-   //    setIsLoading(true);
-   //    try {
-   //       const res = await axios(searchPhotos(searchTerm, page));
-   //       const { data } = res;
-   //       setPhotoData([...photoData, ...data.results]);
-   //       setIsLoading(false);
-   //    } catch (err) {
-   //       console.log(err);
-   //    }
-   // };
-
-   // const changePage = () => {
-   //    setPage(page + 1);
-   // };
-
-   // useEffect(() => {
-   //    loadInitialPhotos();
-   // }, []);
-
-   // useEffect(() => {
-   //    loadMorePhotos();
-   // }, [page]);
-
-   // useEffect(() => {
-   //    searchTerm = props.match.params.searchId;
-   //    loadInitialPhotos();
-   // }, [props.match.params.searchId]);
-
    useEffect(() => {
-      dispatch(loadInitialPhotos(searchTerm));
+      dispatch(loadSearchPagePhotos(searchTerm));
    }, []);
 
    useEffect(() => {
-      dispatch(loadMorePhotos(searchTerm));
-   }, [page]);
-
-   useEffect(() => {
-      searchTerm = props.match.params.searchId;
-      dispatch(loadInitialPhotos(searchTerm));
-   }, [props.match.params.searchId]);
+      dispatch(newSearch(searchTerm));
+   }, [searchTerm]);
 
    return (
       <motion.div
@@ -93,7 +45,7 @@ const SearchResult = (props) => {
             {photoData && (
                <InfiniteScroll
                   dataLength={photoData.length}
-                  next={() => dispatch(changePage())}
+                  next={() => dispatch(changeSearchPage())}
                   hasMore={true}
                   loader={<h4>Loading...</h4>}
                >
