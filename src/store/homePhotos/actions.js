@@ -10,11 +10,10 @@ import {
 
 export const loadHomePhotos = () => async (dispatch, getState) => {
    const state = getState();
-   const page = state.homePhotos.page;
+   const { page } = state.homePhotos;
    try {
       dispatch({ type: LOAD_PHOTOS_PENDING });
-      const res = await axios(fetchHomePhotos(page));
-      const { data } = res;
+      const { data } = await axios(fetchHomePhotos(page));
       dispatch({
          type: LOAD_HOME_PHOTOS_SUCCESS,
          payload: data,

@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import axios from "axios";
 import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingBar from "react-top-loading-bar";
@@ -8,8 +9,7 @@ import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { slideLeftAnim } from "animation";
 import { SearchedPhoto, SearchMenu } from "components";
-import { Container } from "GlobalStyle";
-import { SearchResults } from "./SearchResult.style";
+import { Container, SearchResults } from "GlobalStyle";
 import { useDispatch, useSelector } from "react-redux";
 import {
    loadSearchPagePhotos,
@@ -18,22 +18,35 @@ import {
 } from "store/searchResults/actions";
 
 const SearchResult = (props) => {
-   const photoData = useSelector((state) => state.searchResults.photoData);
-   const isLoading = useSelector((state) => state.searchResults.isLoading);
-   const error = useSelector((state) => state.searchResults.error);
+   const { photoData, isLoading, total, error } = useSelector(
+      (state) => state.searchResults
+   );
    const dispatch = useDispatch();
 
-   const loadingBar = useRef();
    let searchTerm = props.match.params.searchTerm;
 
+   const loadingBar = useRef();
    useLoadingBar(isLoading, loadingBar);
 
    useEffect(() => {
-      dispatch(loadSearchPagePhotos(searchTerm));
+      let source = axios.CancelToken.source();
+      dispatch(loadSearchPagePhotos(searchTerm, source));
+
+      return () => {
+         console.log("search unmounting");
+         source.cancel();
+      };
    }, []);
 
    useEffect(() => {
-      dispatch(newSearch(searchTerm));
+      let source = axios.CancelToken.source();
+
+      dispatch(newSearch(searchTerm, source));
+
+      return () => {
+         console.log("search unmounting");
+         source.cancel();
+      };
    }, [searchTerm]);
 
    return (
@@ -52,16 +65,18 @@ const SearchResult = (props) => {
                loader={<h4>Loading...</h4>}
             >
                <SearchResults>
-                  <SearchMenu searchTerm={searchTerm} />
+                  <SearchMenu total={total} />
                   <Masonry
                      breakpointCols={3}
                      className="my-masonry-grid"
                      columnClassName="my-masonry-grid_column"
                   >
-                     {photoData &&
-                        photoData.map((photo) => (
+                     {photoData?.map(
+                        (photo) => (
                            <SearchedPhoto photo={photo} key={photo.id} />
-                        ))}
+                        ),
+                        console.log(photoData)
+                     )}
                   </Masonry>
                </SearchResults>
             </InfiniteScroll>

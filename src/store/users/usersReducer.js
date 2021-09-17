@@ -1,61 +1,61 @@
 import {
-   LOAD_PHOTOS_SUCCESS,
-   LOAD_PHOTOS_PENDING,
-   LOAD_PHOTOS_ERROR,
-   CHANGE_SEARCH_PAGE,
+   LOAD_USERS_SUCCESS,
+   LOAD_USERS_PENDING,
+   LOAD_USERS_ERROR,
+   CHANGE_USERS_PAGE,
    CAPTURE_SEARCH_TERM,
    NEW_SEARCH_SUCCESS,
 } from "./types";
 
 const initialState = {
    searchTerm: "",
-   photoData: [],
+   usersData: [],
    isLoading: false,
    page: 1,
    total: null,
    error: false,
 };
 
-const searchResultsReducer = (state = initialState, action) => {
+const usersReducer = (state = initialState, action) => {
    switch (action.type) {
-      case CAPTURE_SEARCH_TERM:
-         return {
-            ...state,
-            searchTerm: action.payload,
-         };
-      case LOAD_PHOTOS_PENDING:
+      default:
+         return state;
+      case LOAD_USERS_PENDING:
          return {
             ...state,
             isLoading: true,
          };
-      case LOAD_PHOTOS_SUCCESS:
+      case LOAD_USERS_SUCCESS:
          return {
             ...state,
             isLoading: false,
-            photoData: [...state.photoData, ...action.payload.results],
+            usersData: [...state.usersData, ...action.payload.results],
             total: action.payload.total,
          };
-      case LOAD_PHOTOS_ERROR:
+      case LOAD_USERS_ERROR:
          return {
             ...state,
             error: true,
             isLoading: false,
          };
-      case CHANGE_SEARCH_PAGE:
+      case CHANGE_USERS_PAGE:
          return {
             ...state,
             page: state.page + 1,
+         };
+      case CAPTURE_SEARCH_TERM:
+         return {
+            ...state,
+            searchTerm: action.payload,
          };
       case NEW_SEARCH_SUCCESS:
          return {
             ...state,
             isLoading: false,
-            photoData: [...action.payload.results],
+            usersData: [...action.payload.results],
             total: action.payload.total,
          };
-      default:
-         return state;
    }
 };
 
-export default searchResultsReducer;
+export default usersReducer;

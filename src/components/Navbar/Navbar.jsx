@@ -4,12 +4,14 @@ import search from "assets/search.png";
 import camera from "assets/camera.png";
 import favorites from "assets/favorites.png";
 import theme from "assets/theme.png";
-import { Link, NavLink, withRouter } from "react-router-dom";
+import { Link, NavLink, withRouter, useLocation } from "react-router-dom";
 import { NavbarIcon } from "components";
 import { StyledNav, NavIcons, HomeIcon, SearchInput } from "./Navbar.styles";
 
 const Navbar = (props) => {
    const [inputValue, setInputValue] = useState("");
+   const { pathname } = useLocation();
+   const splitPathname = pathname.split("/");
 
    const handleChange = (e) => {
       setInputValue(e.target.value);
@@ -18,8 +20,16 @@ const Navbar = (props) => {
    const handleSubmit = (e) => {
       e.preventDefault();
 
-      props.history.push(`/search/${inputValue}`);
-      setInputValue("");
+      if (splitPathname[2] === "users") {
+         props.history.push(`/search/users/${inputValue}`);
+         setInputValue("");
+      } else if (splitPathname[2] === "collections") {
+         props.history.push(`/search/collections/${inputValue}`);
+         setInputValue("");
+      } else {
+         props.history.push(`/search/${inputValue}`);
+         setInputValue("");
+      }
    };
 
    return (

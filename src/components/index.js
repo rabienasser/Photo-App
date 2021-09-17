@@ -4,3 +4,4 @@ export { default as NavbarIcon } from "./NavbarIcon";
 export { default as Photo } from "./Photo";
 export { default as SearchedPhoto } from "./SearchedPhoto";
 export { default as SearchMenu } from "./SearchMenu";
+export { default as SearchedUser } from "./SearchedUser";

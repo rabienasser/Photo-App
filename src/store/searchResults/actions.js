@@ -11,12 +11,20 @@ import {
 } from "./types";
 
 export const loadSearchPagePhotos =
-   (searchTerm) => async (dispatch, getState) => {
+   (searchTerm, source) => async (dispatch, getState) => {
       const state = getState();
-      const page = state.searchResults.page;
-      const res = await axios(searchPhotos(searchTerm, page));
-      const { data } = res;
+      const { page } = state.searchResults;
+
+      dispatch({
+         type: CAPTURE_SEARCH_TERM,
+         payload: searchTerm,
+      });
+
       try {
+         const { data } = await axios(searchPhotos(searchTerm, page), {
+            cancelToken: source.token,
+         });
+         console.log("got response SEARCH");
          dispatch({ type: LOAD_PHOTOS_PENDING });
 
          dispatch({
@@ -24,31 +32,38 @@ export const loadSearchPagePhotos =
             payload: data,
          });
       } catch (err) {
-         dispatch({
-            type: LOAD_PHOTOS_ERROR,
-            payload: err,
-         });
+         if (axios.isCancel(err)) {
+            console.log("caught cancel");
+         } else {
+            dispatch({
+               type: LOAD_PHOTOS_ERROR,
+            });
+         }
       }
    };
 
 export const changePage = () => (dispatch, getState) => {
    const state = getState();
-   const searchTerm = state.searchResults.searchTerm;
+   const { searchTerm } = state.searchResults;
    dispatch({
       type: CHANGE_SEARCH_PAGE,
    });
    dispatch(loadSearchPagePhotos(searchTerm));
 };
 
-export const newSearch = (searchTerm) => async (dispatch, getState) => {
-   const res = await axios(searchPhotos(searchTerm, 1));
-   const { data } = res;
-   try {
-      dispatch({
-         type: CAPTURE_SEARCH_TERM,
-         payload: searchTerm,
-      });
+export const newSearch = (searchTerm, source) => async (dispatch, getState) => {
+   // const res = await axios(searchPhotos(searchTerm, 1));
+   // const { data } = res;
+   dispatch({
+      type: CAPTURE_SEARCH_TERM,
+      payload: searchTerm,
+   });
 
+   try {
+      const { data } = await axios(searchPhotos(searchTerm, 1), {
+         cancelToken: source.token,
+      });
+      console.log("got response SEARCH");
       dispatch({ type: LOAD_PHOTOS_PENDING });
 
       dispatch({
@@ -56,8 +71,12 @@ export const newSearch = (searchTerm) => async (dispatch, getState) => {
          payload: data,
       });
    } catch (err) {
-      dispatch({
-         type: LOAD_PHOTOS_ERROR,
-      });
+      if (axios.isCancel(err)) {
+         console.log("caught cancel");
+      } else {
+         dispatch({
+            type: LOAD_PHOTOS_ERROR,
+         });
+      }
    }
 };

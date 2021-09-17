@@ -11,10 +11,11 @@ import { useDispatch, useSelector } from "react-redux";
 import { loadHomePhotos, changePage } from "store/homePhotos/actions";
 
 const Home = () => {
-   const dispatch = useDispatch();
-   const homePhotos = useSelector((state) => state.homePhotos.homePhotoData);
-   const isLoading = useSelector((state) => state.homePhotos.isLoading);
+   const { homePhotoData, isLoading } = useSelector(
+      (state) => state.homePhotos
+   );
    const selectedPhotoIndex = useSelector((state) => state.photo.selectedPhoto);
+   const dispatch = useDispatch();
 
    const loadingBar = useRef();
 
@@ -34,7 +35,7 @@ const Home = () => {
          <LoadingBar color="#6958f2" ref={loadingBar} />
          <Container>
             <InfiniteScroll
-               dataLength={homePhotos.length}
+               dataLength={homePhotoData.length}
                next={() => dispatch(changePage())}
                hasMore={true}
                loader={<h4>Loading...</h4>}
@@ -44,7 +45,7 @@ const Home = () => {
                   className="my-masonry-grid"
                   columnClassName="my-masonry-grid_column"
                >
-                  {homePhotos?.map((photo, index) => (
+                  {homePhotoData?.map((photo, index) => (
                      <Photo photo={photo} index={index} key={photo.id} />
                   ))}
                </Masonry>
@@ -52,7 +53,7 @@ const Home = () => {
          </Container>
          {selectedPhotoIndex > -1 && (
             <PhotoModal
-               photos={homePhotos}
+               photos={homePhotoData}
                photoIndex={selectedPhotoIndex}
                changePage={changePage}
             />

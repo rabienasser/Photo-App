@@ -41,6 +41,10 @@ export const Container = styled.div`
    margin: 0 auto;
    text-align: center;
 
+   @media (max-width: 1300px) {
+      width: 80%;
+   }
+
    .my-masonry-grid {
       display: -webkit-box;
       display: -ms-flexbox;
@@ -56,4 +60,11 @@ export const Container = styled.div`
    .my-masonry-grid_column > img {
       margin-bottom: 25px;
    }
+`;
+
+export const SearchResults = styled.div`
+   display: flex;
+   flex-direction: column;
+   justify-content: center;
+   align-items: center;
 `;
