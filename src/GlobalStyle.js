@@ -67,4 +67,17 @@ export const SearchResults = styled.div`
    flex-direction: column;
    justify-content: center;
    align-items: center;
+   overflow: hidden;
+`;
+
+export const GridContainer = styled.div`
+   display: grid;
+   grid-template-columns: repeat(2, 1fr);
+   grid-auto-rows: ${(props) => props.autoRows && "400px"};
+   grid-gap: 30px;
+   padding: 20px;
+
+   @media (max-width: 900px) {
+      grid-template-columns: repeat(1, 1fr);
+   }
 `;

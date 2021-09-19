@@ -1,47 +1,51 @@
 import {
-   LOAD_PHOTOS_SUCCESS,
-   LOAD_PHOTOS_PENDING,
-   LOAD_PHOTOS_ERROR,
-   CHANGE_SEARCH_PAGE,
+   LOAD_COLLECTIONS_PENDING,
+   LOAD_COLLECTIONS_SUCCESS,
+   LOAD_COLLECTIONS_ERROR,
+   CHANGE_PAGE,
    CAPTURE_SEARCH_TERM,
    NEW_SEARCH_SUCCESS,
 } from "./types";
 
 const initialState = {
    searchTerm: "",
-   photoData: [],
+   collectionsData: [],
    isLoading: false,
    page: 1,
    total: null,
    error: false,
 };
 
-const searchResultsReducer = (state = initialState, action) => {
+const collectionsReducer = (state = initialState, action) => {
    switch (action.type) {
       case CAPTURE_SEARCH_TERM:
          return {
             ...state,
             searchTerm: action.payload,
          };
-      case LOAD_PHOTOS_PENDING:
+      case LOAD_COLLECTIONS_PENDING:
          return {
             ...state,
             isLoading: true,
          };
-      case LOAD_PHOTOS_SUCCESS:
+      case LOAD_COLLECTIONS_SUCCESS:
+         console.log(action.payload.results);
          return {
             ...state,
             isLoading: false,
-            photoData: [...state.photoData, ...action.payload.results],
+            collectionsData: [
+               ...state.collectionsData,
+               ...action.payload.results,
+            ],
             total: action.payload.total,
          };
-      case LOAD_PHOTOS_ERROR:
+      case LOAD_COLLECTIONS_ERROR:
          return {
             ...state,
             error: true,
             isLoading: false,
          };
-      case CHANGE_SEARCH_PAGE:
+      case CHANGE_PAGE:
          return {
             ...state,
             page: state.page + 1,
@@ -50,7 +54,7 @@ const searchResultsReducer = (state = initialState, action) => {
          return {
             ...state,
             isLoading: false,
-            photoData: [...action.payload.results],
+            collectionsData: [...action.payload.results],
             total: action.payload.total,
          };
       default:
@@ -58,4 +62,4 @@ const searchResultsReducer = (state = initialState, action) => {
    }
 };
 
-export default searchResultsReducer;
+export default collectionsReducer;
