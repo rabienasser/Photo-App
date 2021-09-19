@@ -19,20 +19,37 @@ export const pageAnimation = {
    },
 };
 
+export const slideBottomAnim = {
+   hidden: {
+      y: 800,
+   },
+   show: {
+      y: 0,
+      transition: {
+         duration: 1,
+      },
+   },
+};
+
 export const slideLeftAnim = {
    hidden: {
-      x: 800,
+      x: 1000,
    },
    show: {
       x: 0,
       transition: {
-         duration: 0.75,
+         duration: 1,
       },
    },
-   exit: {
-      x: 800,
+};
+export const slideRightAnim = {
+   hidden: {
+      x: -1000,
+   },
+   show: {
+      x: 0,
       transition: {
-         duration: 0.8,
+         duration: 1,
       },
    },
 };

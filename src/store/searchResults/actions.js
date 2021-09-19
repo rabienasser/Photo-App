@@ -11,7 +11,7 @@ import {
 } from "./types";
 
 export const loadSearchPagePhotos =
-   (searchTerm, source) => async (dispatch, getState) => {
+   (searchTerm) => async (dispatch, getState) => {
       const state = getState();
       const { page } = state.searchResults;
 
@@ -21,11 +21,9 @@ export const loadSearchPagePhotos =
       });
 
       try {
-         const { data } = await axios(searchPhotos(searchTerm, page), {
-            cancelToken: source.token,
-         });
-         console.log("got response SEARCH");
          dispatch({ type: LOAD_PHOTOS_PENDING });
+
+         const { data } = await axios(searchPhotos(searchTerm, page));
 
          dispatch({
             type: LOAD_PHOTOS_SUCCESS,
@@ -51,32 +49,24 @@ export const changePage = () => (dispatch, getState) => {
    dispatch(loadSearchPagePhotos(searchTerm));
 };
 
-export const newSearch = (searchTerm, source) => async (dispatch, getState) => {
-   // const res = await axios(searchPhotos(searchTerm, 1));
-   // const { data } = res;
+export const newSearch = (searchTerm) => async (dispatch, getState) => {
    dispatch({
       type: CAPTURE_SEARCH_TERM,
       payload: searchTerm,
    });
 
    try {
-      const { data } = await axios(searchPhotos(searchTerm, 1), {
-         cancelToken: source.token,
-      });
-      console.log("got response SEARCH");
       dispatch({ type: LOAD_PHOTOS_PENDING });
+
+      const { data } = await axios(searchPhotos(searchTerm, 1));
 
       dispatch({
          type: NEW_SEARCH_SUCCESS,
          payload: data,
       });
    } catch (err) {
-      if (axios.isCancel(err)) {
-         console.log("caught cancel");
-      } else {
-         dispatch({
-            type: LOAD_PHOTOS_ERROR,
-         });
-      }
+      dispatch({
+         type: LOAD_PHOTOS_ERROR,
+      });
    }
 };

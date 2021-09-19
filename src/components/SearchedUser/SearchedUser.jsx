@@ -9,21 +9,14 @@ import {
    User,
 } from "./SearchedUser.style";
 
-const SearchedUser = ({
-   user: {
-      name,
-      profile_image: { medium },
-      photos,
-      username,
-   },
-}) => {
+const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
    const [userAdded, setUserAdded] = useState(false);
 
    return (
       <Container>
          <TopRow>
             <User>
-               <img src={medium} alt={username} />
+               <img src={profile_image?.medium} alt={username} />
                <div>
                   <h5>{name}</h5>
                   <p>@{username}</p>
@@ -37,7 +30,7 @@ const SearchedUser = ({
             </button>
          </TopRow>
          <MiddleRow>
-            {photos.map((photo) => (
+            {photos?.map((photo) => (
                <div key={photo.id}>
                   <img src={photo.urls.thumb} alt={photo.id} />
                </div>
