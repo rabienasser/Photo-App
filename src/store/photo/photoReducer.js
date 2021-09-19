@@ -10,6 +10,7 @@ const initialState = {
 };
 
 const photoReducer = (state = initialState, action) => {
+   let oldIndex = state.selectedPhoto;
    switch (action.type) {
       case OPEN_PHOTO:
          return {
@@ -22,16 +23,14 @@ const photoReducer = (state = initialState, action) => {
             selectedPhoto: -1,
          };
       case CLICK_NEXT_PHOTO:
-         let oldIndex = state.selectedPhoto;
          const nextIndex = oldIndex + 1;
          return {
             ...state,
             selectedPhoto: nextIndex,
          };
       case CLICK_PREVIOUS_PHOTO:
-         let old_Index = state.selectedPhoto;
          const prevIndex =
-            old_Index === 0 ? action.payload.length - 1 : old_Index - 1;
+            oldIndex === 0 ? action.payload.length - 1 : oldIndex - 1;
          return {
             ...state,
             selectedPhoto: prevIndex,
