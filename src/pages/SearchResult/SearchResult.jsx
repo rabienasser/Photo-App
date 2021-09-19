@@ -1,96 +1,71 @@
-import React, { useState, useEffect } from "react";
-import axios from "axios";
+import React, { useEffect, useRef } from "react";
 import Masonry from "react-masonry-css";
 import InfiniteScroll from "react-infinite-scroll-component";
+import LoadingBar from "react-top-loading-bar";
+import useLoadingBar from "utils/loadingBar";
+import "react-toastify/dist/ReactToastify.css";
+import { toast } from "react-toastify";
 import { motion } from "framer-motion";
-import { slideLeftAnim } from "animation";
-import { searchPhotos } from "utils/api";
+import { slideBottomAnim } from "animation";
 import { SearchedPhoto, SearchMenu } from "components";
-import { Container } from "GlobalStyle";
-import { SearchResults } from "./SearchResult.style";
+import { Container, SearchResults } from "GlobalStyle";
+import { useDispatch, useSelector } from "react-redux";
+import {
+   loadSearchPagePhotos,
+   changePage,
+   newSearch,
+} from "store/searchResults/actions";
 
 const SearchResult = (props) => {
-   const [photoData, setPhotoData] = useState(null);
-   const [page, setPage] = useState(1);
-   const [total, setTotal] = useState(null);
-   const [active, setActive] = useState(true);
+   const { photoData, isLoading, total, error } = useSelector(
+      (state) => state.searchResults
+   );
+   const dispatch = useDispatch();
 
-   let searchTerm = props.match.params.searchId;
+   let searchTerm = props.match.params.searchTerm;
 
-   const loadInitialPhotos = async () => {
-      try {
-         const res = await axios(searchPhotos(searchTerm, 1));
-         const { data } = res;
-         setPhotoData(data.results);
-         setTotal(data.total);
-      } catch (err) {
-         console.log(err);
-      }
-   };
-
-   const loadMorePhotos = async () => {
-      try {
-         const res = await axios(searchPhotos(searchTerm, page));
-         const { data } = res;
-         setPhotoData([...photoData, ...data.results]);
-      } catch (err) {
-         console.log(err);
-      }
-   };
-
-   const changePage = () => {
-      setPage(page + 1);
-   };
+   const loadingBar = useRef();
+   useLoadingBar(isLoading, loadingBar);
 
    useEffect(() => {
-      loadInitialPhotos();
+      dispatch(loadSearchPagePhotos(searchTerm));
    }, []);
 
    useEffect(() => {
-      loadMorePhotos();
-   }, [page]);
-
-   useEffect(() => {
-      searchTerm = props.match.params.searchId;
-      loadInitialPhotos();
-   }, [props.match.params.searchId]);
+      dispatch(newSearch(searchTerm));
+   }, [searchTerm]);
 
    return (
-      <motion.div
-         variants={slideLeftAnim}
-         initial="hidden"
-         animate="show"
-         exit="exit"
-      >
+      <div>
+         <LoadingBar color="#6958f2" ref={loadingBar} />
          <Container>
-            {photoData && (
-               <InfiniteScroll
-                  dataLength={photoData.length}
-                  next={() => changePage()}
-                  hasMore={true}
-                  loader={<h4>Loading...</h4>}
-               >
-                  <SearchResults>
-                     <SearchMenu
-                        searchTerm={searchTerm}
-                        total={total}
-                        active={active}
-                     />
+            <InfiniteScroll
+               dataLength={photoData.length}
+               next={() => dispatch(changePage())}
+               hasMore={true}
+               loader={<h4>Loading...</h4>}
+            >
+               <SearchResults>
+                  <SearchMenu total={total} />
+                  <motion.div
+                     variants={slideBottomAnim}
+                     initial="hidden"
+                     animate="show"
+                  >
                      <Masonry
                         breakpointCols={3}
                         className="my-masonry-grid"
                         columnClassName="my-masonry-grid_column"
                      >
-                        {photoData &&
-                           photoData.map((photo) => (
-                              <SearchedPhoto photo={photo} key={photo.id} />
-                           ))}
+                        {photoData?.map((photo) => (
+                           <SearchedPhoto photo={photo} key={photo.id} />
+                        ))}
                      </Masonry>
-                  </SearchResults>
-               </InfiniteScroll>
-            )}
+                  </motion.div>
+               </SearchResults>
+            </InfiniteScroll>
          </Container>
-      </motion.div>
+      </div>
    );
 };
 

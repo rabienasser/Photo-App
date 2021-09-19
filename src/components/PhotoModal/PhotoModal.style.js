@@ -35,7 +35,7 @@ export const ContentContainer = styled(motion.div)`
    width: 100%;
 `;
 
-export const ModalContent = styled(motion.div)`
+export const ModalContent = styled.div`
    height: 100%;
 `;
 
@@ -62,18 +62,18 @@ export const MiddleRow = styled.div`
    padding: 20px 0;
    height: 80%;
 
-   img {
-      width: auto;
-      height: 100%;
-      object-fit: cover;
-      cursor: pointer;
-   }
-
    .arrow {
       height: 25px;
       width: 25px;
       cursor: pointer;
    }
+`;
+
+export const StyledImage = styled(motion.img)`
+   max-width: 100%;
+   max-height: 100%;
+   object-fit: cover;
+   cursor: pointer;
 `;
 
 export const BottomRow = styled.div`
