@@ -12,7 +12,7 @@ const initialState = {
    usersData: [],
    isLoading: false,
    page: 1,
-   total: null,
+   total: 0,
    error: false,
 };
 

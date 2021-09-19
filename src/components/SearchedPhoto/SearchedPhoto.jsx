@@ -5,7 +5,7 @@ const SearchedPhoto = ({ photo: { urls, description, likes } }) => {
    return (
       <>
          <StyledPhoto>
-            <img src={urls.small} alt={description} />
+            <img src={urls?.small} alt={description} />
             <div>
                <p>
                   {likes} <span>Likes</span>

@@ -1,10 +1,11 @@
 import React, { useEffect, useRef } from "react";
-import axios from "axios";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
 import { Container } from "GlobalStyle";
 import { UsersContainer } from "./Users.style";
+import { motion } from "framer-motion";
+import { slideRightAnim } from "animation";
 import { SearchMenu, SearchedUser } from "components";
 import { useDispatch, useSelector } from "react-redux";
 import { loadUsers, changePage, newSearch } from "store/users/actions";
@@ -19,25 +20,11 @@ const Users = (props) => {
    useLoadingBar(isLoading, loadingBar);
 
    useEffect(() => {
-      let source = axios.CancelToken.source();
-
-      dispatch(loadUsers(searchTerm, source));
-
-      return () => {
-         console.log("users unmounting");
-         source.cancel();
-      };
+      dispatch(loadUsers(searchTerm));
    }, []);
 
    useEffect(() => {
-      let source = axios.CancelToken.source();
-
-      dispatch(newSearch(searchTerm, source));
-
-      return () => {
-         console.log("users unmounting");
-         source.cancel();
-      };
+      dispatch(newSearch(searchTerm));
    }, [searchTerm]);
 
    return (
@@ -51,14 +38,17 @@ const Users = (props) => {
                loader={<h4>Loading...</h4>}
             >
                <SearchMenu total={total} />
-               <UsersContainer>
-                  {usersData?.map(
-                     (user) => (
+               <motion.div
+                  variants={slideRightAnim}
+                  initial="hidden"
+                  animate="show"
+               >
+                  <UsersContainer>
+                     {usersData?.map((user) => (
                         <SearchedUser user={user} key={user.id} />
-                     ),
-                     console.log(usersData)
-                  )}
-               </UsersContainer>
+                     ))}
+                  </UsersContainer>
+               </motion.div>
             </InfiniteScroll>
          </Container>
       </div>
