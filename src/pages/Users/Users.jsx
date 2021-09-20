@@ -2,8 +2,7 @@ import React, { useEffect, useRef } from "react";
 import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
-import { Container } from "GlobalStyle";
-import { UsersContainer } from "./Users.style";
+import { Container, GridContainer } from "GlobalStyle";
 import { motion } from "framer-motion";
 import { slideRightAnim } from "animation";
 import { SearchMenu, SearchedUser } from "components";
@@ -43,11 +42,11 @@ const Users = (props) => {
                   initial="hidden"
                   animate="show"
                >
-                  <UsersContainer>
+                  <GridContainer>
                      {usersData?.map((user) => (
                         <SearchedUser user={user} key={user.id} />
                      ))}
-                  </UsersContainer>
+                  </GridContainer>
                </motion.div>
             </InfiniteScroll>
          </Container>

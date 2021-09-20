@@ -19,10 +19,18 @@ export const StyledMenu = styled.ul`
          color: black;
          transition: color 1s ease-out;
       }
+
+      @media (max-width: 768px) {
+         font-size: 16px;
+      }
    }
 
    .active {
       color: black;
       border-bottom: 5px solid #6958f2;
+
+      @media (max-width: 768px) {
+         border-bottom: 3px solid #6958f2;
+      }
    }
 `;
