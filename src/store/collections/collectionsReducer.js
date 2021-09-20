@@ -29,7 +29,6 @@ const collectionsReducer = (state = initialState, action) => {
             isLoading: true,
          };
       case LOAD_COLLECTIONS_SUCCESS:
-         console.log(action.payload.results);
          return {
             ...state,
             isLoading: false,
