@@ -65,23 +65,32 @@ export const List = styled.ul`
    display: flex;
    flex-direction: ${(props) => (props.row ? "row" : "column")};
 
-   li {
-      margin-right: ${(props) => props.row && "20px"};
+   li,
+   a {
       padding-bottom: 8px;
       font-size: 14px;
       color: var(--greyText);
       transition: color 0.3s ease;
    }
 
-   .hire,
-   .active {
-      color: var(--purple);
+   a {
+      margin-right: ${(props) => props.row && "20px"};
    }
 
    .link {
       cursor: pointer;
       &:hover {
          color: black;
+      }
+   }
+
+   .hire,
+   .active {
+      color: var(--purple);
+
+      &:hover {
+         color: var(--purple);
+         cursor: text;
       }
    }
 

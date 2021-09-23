@@ -34,6 +34,8 @@ class App extends React.Component {
                   />
                   <Route path="/photo/:photoId" />
                   <Route path="/user/:userId" component={UserProfile} exact />
+                  <Route path="/user/:userId/likes" />
+                  <Route path="/user/:userId/collections" />
                </Switch>
             </AnimatePresence>
          </div>

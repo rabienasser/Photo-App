@@ -1,5 +1,5 @@
 import React, { useState } from "react";
-import { Link, useLocation } from "react-router-dom";
+import { Link, NavLink, useLocation } from "react-router-dom";
 import { useSelector } from "react-redux";
 import { AddUserBtn } from "components";
 import { library } from "@fortawesome/fontawesome-svg-core";
@@ -194,22 +194,32 @@ const ProfileOverview = () => {
             </ProfileDetails>
          </StyledOverview>
          <List row>
-            <li
-               className={`link ${
-                  splitLocation.pop() === username ? "active" : ""
-               }`}
+            <NavLink
+               to={`/user/${username}`}
+               activeClassName="active"
+               className="link"
             >
                <FontAwesomeIcon icon={faImage} className="icon" />
                Photos: {total_photos?.toLocaleString()}
-            </li>
-            <li className="link">
+            </NavLink>
+
+            <NavLink
+               to={`/user/${username}/likes`}
+               activeClassName="active"
+               className="link"
+            >
                <FontAwesomeIcon icon={faHeart} className="icon" />
                Photos: {total_likes?.toLocaleString()}
-            </li>
-            <li className="link">
+            </NavLink>
+
+            <NavLink
+               to={`/user/${username}/collections`}
+               activeClassName="active"
+               className="link"
+            >
                <FontAwesomeIcon icon={faLayerGroup} className="icon" />
                Photos: {total_collections?.toLocaleString()}
-            </li>
+            </NavLink>
          </List>
       </Container>
    );
