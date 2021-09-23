@@ -1,4 +1,5 @@
 import React from "react";
+import { Link } from "react-router-dom";
 import close from "assets/close.png";
 import star from "assets/star.png";
 import heart from "assets/heart.png";
@@ -34,11 +35,13 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                <ModalContent>
                   <TopRow>
                      <RightMarg>
-                        <img
-                           src={photo.user.profile_image.small}
-                           alt={photo.user.name}
-                        />
-                        <p>{photo.user.name}</p>
+                        <Link to={`/user/${photo.user.username}`}>
+                           <img
+                              src={photo.user.profile_image.small}
+                              alt={photo.user.name}
+                           />
+                           <p>{photo.user.name}</p>
+                        </Link>
                      </RightMarg>
                      <button onClick={() => dispatch(closePhoto())}>
                         <img className="icon" src={close} alt="close" />

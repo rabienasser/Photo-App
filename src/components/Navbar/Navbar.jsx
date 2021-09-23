@@ -6,7 +6,13 @@ import favorites from "assets/favorites.png";
 import theme from "assets/theme.png";
 import { Link, NavLink, withRouter, useLocation } from "react-router-dom";
 import { NavbarIcon } from "components";
-import { StyledNav, NavIcons, HomeIcon, SearchInput } from "./Navbar.styles";
+import {
+   StyledNav,
+   NavContent,
+   NavIcons,
+   HomeIcon,
+   SearchInput,
+} from "./Navbar.styles";
 
 const Navbar = (props) => {
    const [inputValue, setInputValue] = useState("");
@@ -34,29 +40,31 @@ const Navbar = (props) => {
 
    return (
       <StyledNav>
-         <SearchInput>
-            <Link to="/">
-               <HomeIcon className="homeIcon" src={homePage} alt="Home" />
-            </Link>
-            <form onSubmit={(e) => handleSubmit(e, inputValue)}>
-               <img src={search} alt="Search" />
-               <input
-                  type="text"
-                  placeholder="Search..."
-                  onChange={handleChange}
-                  value={inputValue}
-               />
-            </form>
-         </SearchInput>
-         <NavIcons>
-            <NavLink to="/" exact activeClassName="photos">
-               <NavbarIcon photo={camera} text="Photos" />
-            </NavLink>
-            <NavLink to="/favorites" activeClassName="favorites">
-               <NavbarIcon photo={favorites} text="Saved" />
-            </NavLink>
-            <NavbarIcon photo={theme} text="Theme" />
-         </NavIcons>
+         <NavContent>
+            <SearchInput>
+               <Link to="/">
+                  <HomeIcon className="homeIcon" src={homePage} alt="Home" />
+               </Link>
+               <form onSubmit={(e) => handleSubmit(e, inputValue)}>
+                  <img src={search} alt="Search" />
+                  <input
+                     type="text"
+                     placeholder="Search..."
+                     onChange={handleChange}
+                     value={inputValue}
+                  />
+               </form>
+            </SearchInput>
+            <NavIcons>
+               <NavLink to="/" exact activeClassName="photos">
+                  <NavbarIcon photo={camera} text="Photos" />
+               </NavLink>
+               <NavLink to="/favorites" activeClassName="favorites">
+                  <NavbarIcon photo={favorites} text="Saved" />
+               </NavLink>
+               <NavbarIcon photo={theme} text="Theme" />
+            </NavIcons>
+         </NavContent>
       </StyledNav>
    );
 };

@@ -21,7 +21,7 @@ export const Modal = styled(motion.div)`
    height: 82%;
    width: 48%;
    padding: 20px;
-   background: #ffffff;
+   background: var(--white);
 
    .icon {
       height: 30px;
@@ -48,6 +48,10 @@ export const TopRow = styled.div`
 
 export const RightMarg = styled.div`
    display: flex;
+
+   a {
+      display: flex;
+   }
 
    img {
       margin-right: 15px;

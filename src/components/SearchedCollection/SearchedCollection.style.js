@@ -59,12 +59,5 @@ export const CollectionDescription = styled.div`
 
    ul {
       display: flex;
-
-      a {
-         padding: 0 8px;
-         margin-right: 10px;
-         background: rgb(238, 238, 238);
-         cursor: pointer;
-      }
    }
 `;

@@ -1,11 +1,21 @@
 import styled from "styled-components";
 
 export const StyledNav = styled.nav`
+   position: sticky;
+   top: 0;
+   width: 100%;
+   margin: 00 0 20px;
+   background: #f8f8f8;
+   z-index: 10;
+`;
+
+export const NavContent = styled.div`
+   width: 65%;
    display: flex;
    justify-content: space-between;
    align-items: center;
-   width: 65%;
-   margin: 10px auto 20px;
+   margin: auto;
+   padding: 7px 0;
 `;
 
 export const NavIcons = styled.ul`
@@ -34,7 +44,7 @@ export const SearchInput = styled.div`
    width: 50%;
 
    form {
-      background: #ffffff;
+      background: var(--white);
       width: 100%;
       display: flex;
       align-items: center;
@@ -55,7 +65,7 @@ export const SearchInput = styled.div`
          padding: 10px;
          margin: 5px 35px 5px 0;
          font-size: 16px;
-         color: #999999;
+         color: var(--greyText);
          outline: none;
          border: none;
          border-bottom-right-radius: 5px;

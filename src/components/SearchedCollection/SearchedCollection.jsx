@@ -6,6 +6,7 @@ import {
    SmallPhotos,
    CollectionDescription,
 } from "./SearchedCollection.style";
+import { Tag } from "components";
 
 const SearchedCollection = ({
    collection: { preview_photos, title, total_photos, user, tags },
@@ -40,7 +41,11 @@ const SearchedCollection = ({
             </p>
             <ul>
                {tags?.slice(0, 3).map((tag) => (
-                  <Link to={`/search/${tag.title}`} key={tags.indexOf(tag)}>
+                  <Link
+                     to={`/search/${tag.title}`}
+                     key={tags.indexOf(tag)}
+                     className="tag"
+                  >
                      {tag.title}
                   </Link>
                ))}
