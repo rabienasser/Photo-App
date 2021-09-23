@@ -18,8 +18,6 @@ const initialState = {
 
 const usersReducer = (state = initialState, action) => {
    switch (action.type) {
-      default:
-         return state;
       case LOAD_USERS_PENDING:
          return {
             ...state,
@@ -55,6 +53,8 @@ const usersReducer = (state = initialState, action) => {
             usersData: [...action.payload.results],
             total: action.payload.total,
          };
+      default:
+         return state;
    }
 };
 

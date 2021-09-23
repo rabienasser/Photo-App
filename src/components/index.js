@@ -6,3 +6,5 @@ export { default as SearchedPhoto } from "./SearchedPhoto";
 export { default as SearchMenu } from "./SearchMenu";
 export { default as SearchedUser } from "./SearchedUser";
 export { default as SearchedCollection } from "./SearchedCollection";
+export { default as AddUserBtn } from "./AddUserBtn";
+export { default as ProfileOverview } from "./ProfileOverview";

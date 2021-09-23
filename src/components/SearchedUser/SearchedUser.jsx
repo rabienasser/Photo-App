@@ -1,6 +1,6 @@
-import React, { useState } from "react";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faUserPlus, faUserCheck } from "@fortawesome/free-solid-svg-icons";
+import React from "react";
+import { Link } from "react-router-dom";
+import { AddUserBtn } from "components";
 import {
    Container,
    TopRow,
@@ -10,8 +10,6 @@ import {
 } from "./SearchedUser.style";
 
 const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
-   const [userAdded, setUserAdded] = useState(false);
-
    return (
       <Container>
          <TopRow>
@@ -22,12 +20,7 @@ const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
                   <p>@{username}</p>
                </div>
             </User>
-            <button onClick={() => setUserAdded(!userAdded)}>
-               <FontAwesomeIcon
-                  icon={userAdded ? faUserCheck : faUserPlus}
-                  className={userAdded ? "user-added" : "add-user"}
-               />
-            </button>
+            <AddUserBtn />
          </TopRow>
          <MiddleRow>
             {photos?.map((photo) => (
@@ -37,7 +30,9 @@ const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
             ))}
          </MiddleRow>
          <BottomRow>
-            <button>View Profile</button>
+            <Link to={`/user/${username}`}>
+               <button>View Profile</button>
+            </Link>
          </BottomRow>
       </Container>
    );

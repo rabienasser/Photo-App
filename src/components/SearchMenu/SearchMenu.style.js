@@ -13,7 +13,7 @@ export const StyledMenu = styled.ul`
       font-size: 32px;
       text-align: center;
       margin-left: -25px;
-      color: #999999;
+      color: var(--greyText);
 
       &:hover {
          color: black;
@@ -27,10 +27,10 @@ export const StyledMenu = styled.ul`
 
    .active {
       color: black;
-      border-bottom: 5px solid #6958f2;
+      border-bottom: 5px solid var(--purple);
 
       @media (max-width: 768px) {
-         border-bottom: 3px solid #6958f2;
+         border-bottom: 3px solid var(--purple);
       }
    }
 `;

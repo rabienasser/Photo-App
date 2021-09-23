@@ -10,7 +10,7 @@ export const StyledNavbarIcon = styled.li`
    margin: 0 19px;
 
    p {
-      color: #999999;
+      color: var(--greyText);
       margin-top: 5px;
       cursor: pointer;
    }

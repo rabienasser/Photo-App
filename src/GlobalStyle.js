@@ -2,6 +2,12 @@ import { createGlobalStyle } from "styled-components";
 import styled from "styled-components";
 
 export const GlobalStyle = createGlobalStyle`
+   :root {
+      --purple: #6958f2;
+      --greyText: #767676;
+      --white: #ffffff;
+   }
+
    * {
       box-sizing: border-box;
       margin: 0;
@@ -33,6 +39,13 @@ export const GlobalStyle = createGlobalStyle`
 
    li {
       list-style: none;
+   }
+
+   .tag {
+      padding: 0 8px;
+         margin-right: 10px;
+         background: rgb(238, 238, 238);
+         cursor: pointer;
    }
 `;
 

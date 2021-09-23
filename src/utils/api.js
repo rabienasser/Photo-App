@@ -21,3 +21,15 @@ export const searchCollections = (query, page) => {
    const key = process.env.REACT_APP_API_KEY;
    return `${base}/search/collections?query=${query}&per_page=15&page=${page}&client_id=${key}`;
 };
+
+export const searchUserProfile = (username) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/users/${username}?&client_id=${key}`;
+};
+
+export const searchUserPhotos = (user, page) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/users/${user}/photos?&per_page=15&page=${page}&client_id=${key}`;
+};
