@@ -43,7 +43,6 @@ const SearchResult = (props) => {
                dataLength={photoData.length}
                next={() => dispatch(changePage())}
                hasMore={true}
-               loader={<h4>Loading...</h4>}
             >
                <SearchResults>
                   <SearchMenu total={total} />

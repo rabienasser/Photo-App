@@ -42,7 +42,6 @@ const Collections = (props) => {
                dataLength={collectionsData.length}
                next={() => dispatch(changePage())}
                hasMore={true}
-               loader={<h4>Loading...</h4>}
             >
                <SearchResults>
                   <SearchMenu total={total} />

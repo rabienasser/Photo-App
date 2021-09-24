@@ -34,7 +34,6 @@ const Users = (props) => {
                dataLength={usersData.length}
                next={() => dispatch(changePage())}
                hasMore={true}
-               loader={<h4>Loading...</h4>}
             >
                <SearchMenu total={total} />
                <motion.div
