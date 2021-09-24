@@ -33,3 +33,15 @@ export const searchUserPhotos = (user, page) => {
    const key = process.env.REACT_APP_API_KEY;
    return `${base}/users/${user}/photos?&per_page=15&page=${page}&client_id=${key}`;
 };
+
+export const searchUserLikes = (user, page) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/users/${user}/likes?&per_page=15&page=${page}&client_id=${key}`;
+};
+
+export const searchUserCollections = (user, page) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/users/${user}/collections?&per_page=10&page=${page}&client_id=${key}`;
+};

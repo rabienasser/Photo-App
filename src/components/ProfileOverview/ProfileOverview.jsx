@@ -195,6 +195,7 @@ const ProfileOverview = () => {
          </StyledOverview>
          <List row>
             <NavLink
+               exact
                to={`/user/${username}`}
                activeClassName="active"
                className="link"
@@ -209,7 +210,7 @@ const ProfileOverview = () => {
                className="link"
             >
                <FontAwesomeIcon icon={faHeart} className="icon" />
-               Photos: {total_likes?.toLocaleString()}
+               Likes: {total_likes?.toLocaleString()}
             </NavLink>
 
             <NavLink
@@ -218,7 +219,7 @@ const ProfileOverview = () => {
                className="link"
             >
                <FontAwesomeIcon icon={faLayerGroup} className="icon" />
-               Photos: {total_collections?.toLocaleString()}
+               Collections: {total_collections?.toLocaleString()}
             </NavLink>
          </List>
       </Container>
