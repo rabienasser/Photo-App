@@ -52,9 +52,6 @@ const ProfileOverview = () => {
       },
    } = useSelector((state) => state.userProfile);
 
-   const { pathname } = useLocation();
-   const splitLocation = pathname.split("/");
-
    const linkToSocial = (social, username) => {
       return `https://${social}.com/${username}`;
    };
@@ -205,7 +202,7 @@ const ProfileOverview = () => {
             </NavLink>
 
             <NavLink
-               to={`/user/${username}/likes`}
+               to={`/user/likes/${username}`}
                activeClassName="active"
                className="link"
             >
@@ -214,7 +211,7 @@ const ProfileOverview = () => {
             </NavLink>
 
             <NavLink
-               to={`/user/${username}/collections`}
+               to={`/user/collections/${username}`}
                activeClassName="active"
                className="link"
             >

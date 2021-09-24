@@ -93,8 +93,8 @@ const userProfileReducer = (state = initialState, action) => {
             ...state,
             userPhotos: [],
             userLikes: [],
-            collectionsLikes: [],
-            page: 1,
+            userCollections: [],
+            photosPage: 1,
             likesPage: 1,
             collectionsPage: 1,
          };

@@ -29,7 +29,7 @@ const UserProfile = (props) => {
    const dispatch = useDispatch();
 
    const { pathname } = useLocation();
-   const splitPathname = pathname.split("/").pop();
+   const splitPathname = pathname.split("/")[2];
 
    let username = props.match.params.userId;
 
@@ -57,23 +57,7 @@ const UserProfile = (props) => {
       };
    }, [splitPathname]);
 
-   // useEffect(() => {
-   //    if (splitPathname === "likes") {
-   // dispatch(loadUserLikes(username));
-   //    }
-   //    return function cleanup() {
-   //       dispatch(clearPhotos());
-   //    };
-   // }, [splitPathname]);
-
-   // useEffect(() => {
-   //    if (splitPathname === "collections") {
-   // dispatch(loadUserCollections(username));
-   //    }
-   //    return function cleanup() {
-   //       dispatch(clearPhotos());
-   //    };
-   // }, [splitPathname]);
+   const photos = splitPathname === username ? userPhotos : userLikes;
 
    return (
       <div>
@@ -95,54 +79,16 @@ const UserProfile = (props) => {
                }}
                hasMore={true}
             >
-               {/* WHY THIS NOT WORKING?? */}
+               <Masonry
+                  breakpointCols={3}
+                  className="my-masonry-grid"
+                  columnClassName="my-masonry-grid_column"
+               >
+                  {photos.map((photo, index) => (
+                     <Photo photo={photo} index={index} key={photo.id} />
+                  ))}
+               </Masonry>
 
-               {/* {splitPathname === (`${username}` || "likes") && (
-                  <Masonry
-                     breakpointCols={3}
-                     className="my-masonry-grid"
-                     columnClassName="my-masonry-grid_column"
-                  >
-                     {splitPathname === `${username}`
-                        ? userPhotos?.map((photo, index) => (
-                             <Photo
-                                photo={photo}
-                                index={index}
-                                key={photo.id}
-                             />
-                          ))
-                        : userLikes?.map((photo, index) => (
-                             <Photo
-                                photo={photo}
-                                index={index}
-                                key={photo.id}
-                             />
-                          ))}
-                  </Masonry>
-               )} */}
-
-               {splitPathname === `${username}` && (
-                  <Masonry
-                     breakpointCols={3}
-                     className="my-masonry-grid"
-                     columnClassName="my-masonry-grid_column"
-                  >
-                     {userPhotos?.map((photo, index) => (
-                        <Photo photo={photo} index={index} key={photo.id} />
-                     ))}
-                  </Masonry>
-               )}
-               {splitPathname === "likes" && (
-                  <Masonry
-                     breakpointCols={3}
-                     className="my-masonry-grid"
-                     columnClassName="my-masonry-grid_column"
-                  >
-                     {userLikes?.map((photo, index) => (
-                        <Photo photo={photo} index={index} key={photo.id} />
-                     ))}
-                  </Masonry>
-               )}
                {splitPathname === "collections" && (
                   <GridContainer autoRows>
                      {userCollections?.map((collection) => (
