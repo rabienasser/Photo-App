@@ -69,14 +69,16 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                            rotation={180}
                         />
                      </motion.button>
-                     <StyledImage
-                        variants={fadePhoto}
-                        initial="hidden"
-                        animate="visible"
-                        key={photo?.id}
-                        src={photo?.urls.small}
-                        alt={photo?.description}
-                     />
+                     <Link to={`/photo/${photo?.id}`}>
+                        <StyledImage
+                           variants={fadePhoto}
+                           initial="hidden"
+                           animate="visible"
+                           key={photo?.id}
+                           src={photo?.urls.small}
+                           alt={photo?.description}
+                        />
+                     </Link>
                      <motion.button
                         onClick={() => {
                            dispatch(clickNextPhoto());

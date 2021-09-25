@@ -41,6 +41,12 @@ export const GlobalStyle = createGlobalStyle`
       list-style: none;
    }
 
+   .icon {
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+   }
+
    .tag {
       padding: 0 8px;
          margin-right: 10px;

@@ -1,7 +1,14 @@
 import React from "react";
 import { ToastContainer } from "react-toastify";
 import { Switch, Route } from "react-router-dom";
-import { Home, SearchResult, Users, Collections, UserProfile } from "pages";
+import {
+   Home,
+   SearchResult,
+   Users,
+   Collections,
+   UserProfile,
+   PhotoPage,
+} from "pages";
 import { Navbar } from "components";
 import { GlobalStyle } from "GlobalStyle";
 import { AnimatePresence } from "framer-motion";
@@ -32,7 +39,7 @@ class App extends React.Component {
                      component={Collections}
                      exact
                   />
-                  <Route path="/photo/:photoId" />
+                  <Route path="/photo/:photoId" component={PhotoPage} />
                   <Route path="/user/:userId" component={UserProfile} exact />
                   <Route path="/user/likes/:userId" component={UserProfile} />
                   <Route
