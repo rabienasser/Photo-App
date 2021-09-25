@@ -75,7 +75,7 @@ const ProfileOverview = () => {
                         <li className="hire">
                            <FontAwesomeIcon
                               icon={faCheckCircle}
-                              className="icon hire"
+                              className="profileIcon hire"
                            />
                            Available for hire
                         </li>
@@ -86,7 +86,7 @@ const ProfileOverview = () => {
                            <li className="link">
                               <FontAwesomeIcon
                                  icon={faMapPin}
-                                 className="icon"
+                                 className="profileIcon"
                               />
                               {location}
                            </li>
@@ -99,7 +99,10 @@ const ProfileOverview = () => {
                            onClick={() => setSocialLinks(!socialLinks)}
                            className="link"
                         >
-                           <FontAwesomeIcon icon={faLink} className="icon" />
+                           <FontAwesomeIcon
+                              icon={faLink}
+                              className="profileIcon"
+                           />
                            Connect with {first_name}
                            <FontAwesomeIcon
                               icon={faCaretDown}
@@ -120,7 +123,7 @@ const ProfileOverview = () => {
                                  >
                                     <FontAwesomeIcon
                                        icon={faGlobeAmericas}
-                                       className="icon"
+                                       className="profileIcon"
                                     />
 
                                     {social.portfolio_url}
@@ -140,7 +143,7 @@ const ProfileOverview = () => {
                                  >
                                     <FontAwesomeIcon
                                        icon={["fab", "instagram"]}
-                                       className="icon"
+                                       className="profileIcon"
                                     />
                                     Instagram
                                  </a>
@@ -159,7 +162,7 @@ const ProfileOverview = () => {
                                  >
                                     <FontAwesomeIcon
                                        icon={["fab", "twitter"]}
-                                       className="icon"
+                                       className="profileIcon"
                                     />
                                     Twitter
                                  </a>
@@ -197,7 +200,7 @@ const ProfileOverview = () => {
                activeClassName="active"
                className="link"
             >
-               <FontAwesomeIcon icon={faImage} className="icon" />
+               <FontAwesomeIcon icon={faImage} className="profileIcon" />
                Photos: {total_photos?.toLocaleString()}
             </NavLink>
 
@@ -206,7 +209,7 @@ const ProfileOverview = () => {
                activeClassName="active"
                className="link"
             >
-               <FontAwesomeIcon icon={faHeart} className="icon" />
+               <FontAwesomeIcon icon={faHeart} className="profileIcon" />
                Likes: {total_likes?.toLocaleString()}
             </NavLink>
 
@@ -215,7 +218,7 @@ const ProfileOverview = () => {
                activeClassName="active"
                className="link"
             >
-               <FontAwesomeIcon icon={faLayerGroup} className="icon" />
+               <FontAwesomeIcon icon={faLayerGroup} className="profileIcon" />
                Collections: {total_collections?.toLocaleString()}
             </NavLink>
          </List>
