@@ -1,4 +1,5 @@
 import React, { useEffect, useRef } from "react";
+import { useLocation } from "react-router-dom";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
 import LoadingBar from "react-top-loading-bar";
@@ -9,6 +10,7 @@ import { Photo, PhotoModal } from "components";
 import { Container } from "GlobalStyle";
 import { useDispatch, useSelector } from "react-redux";
 import { loadHomePhotos, changePage } from "store/homePhotos/actions";
+import { closePhoto } from "store/photo/actions";
 
 const Home = () => {
    const { homePhotoData, isLoading } = useSelector(
@@ -18,12 +20,17 @@ const Home = () => {
    const dispatch = useDispatch();
 
    const loadingBar = useRef();
-
    useLoadingBar(isLoading, loadingBar);
+
+   const { pathname } = useLocation();
 
    useEffect(() => {
       dispatch(loadHomePhotos());
    }, []);
+
+   useEffect(() => {
+      dispatch(closePhoto());
+   }, [pathname]);
 
    return (
       <motion.div

@@ -6,7 +6,6 @@ import {
    SmallPhotos,
    CollectionDescription,
 } from "./SearchedCollection.style";
-import { Tag } from "components";
 
 const SearchedCollection = ({
    collection: { preview_photos, title, total_photos, user, tags },
@@ -27,7 +26,7 @@ const SearchedCollection = ({
                   <div>
                      <img
                         src={photo.urls.small}
-                        alt={photo.id}
+                        alt={photo.description}
                         key={photo.id}
                      />
                   </div>

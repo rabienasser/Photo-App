@@ -5,7 +5,12 @@ import Masonry from "react-masonry-css";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
 import { useSelector, useDispatch } from "react-redux";
-import { Photo, ProfileOverview, SearchedCollection } from "components";
+import {
+   Photo,
+   ProfileOverview,
+   SearchedCollection,
+   PhotoModal,
+} from "components";
 import {
    loadProfile,
    loadUserPhotos,
@@ -16,6 +21,7 @@ import {
    changeCollectionsPage,
    clearPhotos,
 } from "store/userProfile/actions";
+import { closePhoto } from "store/photo/actions";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { Container, GridContainer } from "GlobalStyle";
@@ -26,6 +32,8 @@ const UserProfile = (props) => {
    const { isLoading, userPhotos, userLikes, userCollections } = useSelector(
       (state) => state.userProfile
    );
+   const selectedPhotoIndex = useSelector((state) => state.photo.selectedPhoto);
+
    const dispatch = useDispatch();
 
    const { pathname } = useLocation();
@@ -38,7 +46,7 @@ const UserProfile = (props) => {
 
    useEffect(() => {
       dispatch(loadProfile(username));
-      dispatch(loadUserPhotos(username));
+      dispatch(closePhoto());
       return function cleanup() {
          dispatch(clearPhotos());
       };
@@ -101,6 +109,14 @@ const UserProfile = (props) => {
                )}
             </InfiniteScroll>
          </Container>
+
+         {selectedPhotoIndex > -1 && (
+            <PhotoModal
+               photos={splitPathname === username ? userPhotos : userLikes}
+               photoIndex={selectedPhotoIndex}
+               changePage={changePhotosPage}
+            />
+         )}
       </div>
    );
 };
