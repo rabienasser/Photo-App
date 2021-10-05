@@ -22,12 +22,6 @@ export const Modal = styled(motion.div)`
    width: 48%;
    padding: 20px;
    background: var(--white);
-
-   .icon {
-      height: 30px;
-      width: 30px;
-      cursor: pointer;
-   }
 `;
 
 export const ContentContainer = styled(motion.div)`
@@ -65,6 +59,14 @@ export const MiddleRow = styled.div`
    align-items: center;
    padding: 20px 0;
    height: 80%;
+
+   a {
+      width: 100%;
+      height: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+   }
 
    .arrow {
       height: 25px;

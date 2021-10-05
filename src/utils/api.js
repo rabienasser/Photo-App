@@ -45,3 +45,9 @@ export const searchUserCollections = (user, page) => {
    const key = process.env.REACT_APP_API_KEY;
    return `${base}/users/${user}/collections?&per_page=10&page=${page}&client_id=${key}`;
 };
+
+export const searchPhoto = (photoId) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/photos/${photoId}?&client_id=${key}`;
+};

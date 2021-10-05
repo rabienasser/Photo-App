@@ -79,6 +79,7 @@ export const List = styled.ul`
 
    .link {
       cursor: pointer;
+
       &:hover {
          color: black;
       }
@@ -94,7 +95,7 @@ export const List = styled.ul`
       }
    }
 
-   .icon {
+   .profileIcon {
       margin-right: 10px;
    }
 
