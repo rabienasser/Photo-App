@@ -4,3 +4,4 @@ export { default as Users } from "./Users";
 export { default as Collections } from "./Collections";
 export { default as UserProfile } from "./UserProfile";
 export { default as PhotoPage } from "./PhotoPage";
+export { default as Collection } from "./Collection";

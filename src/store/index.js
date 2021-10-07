@@ -8,6 +8,7 @@ import usersReducer from "./users/usersReducer";
 import collectionsReducer from "./collections/collectionsReducer";
 import userProfileReducer from "./userProfile/userProfileReducer";
 import photoPageReducer from "./photoPage/photoPageReducer";
+import collectionPageReducer from "./collectionPage/collectionPageReducer";
 
 const rootReducer = combineReducers({
    homePhotos: homePhotosReducer,
@@ -17,6 +18,7 @@ const rootReducer = combineReducers({
    collections: collectionsReducer,
    userProfile: userProfileReducer,
    photoPage: photoPageReducer,
+   collectionPage: collectionPageReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

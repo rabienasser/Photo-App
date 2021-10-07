@@ -93,7 +93,12 @@ const UserProfile = (props) => {
                   columnClassName="my-masonry-grid_column"
                >
                   {photos.map((photo, index) => (
-                     <Photo photo={photo} index={index} key={photo.id} />
+                     <Photo
+                        photo={photo}
+                        index={index}
+                        photos={photos}
+                        key={photo.id}
+                     />
                   ))}
                </Masonry>
 

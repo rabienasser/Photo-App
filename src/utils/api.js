@@ -51,3 +51,15 @@ export const searchPhoto = (photoId) => {
    const key = process.env.REACT_APP_API_KEY;
    return `${base}/photos/${photoId}?&client_id=${key}`;
 };
+
+export const searchCollection = (collectionId) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/collections/${collectionId}?&client_id=${key}`;
+};
+
+export const searchCollectionPhotos = (collectionId, page) => {
+   const base = process.env.REACT_APP_ENDPOINT;
+   const key = process.env.REACT_APP_API_KEY;
+   return `${base}/collections/${collectionId}/photos?&page=${page}&client_id=${key}`;
+};
