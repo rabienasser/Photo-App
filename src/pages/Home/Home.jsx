@@ -53,7 +53,12 @@ const Home = () => {
                   columnClassName="my-masonry-grid_column"
                >
                   {homePhotoData?.map((photo, index) => (
-                     <Photo photo={photo} index={index} key={photo.id} />
+                     <Photo
+                        photo={photo}
+                        index={index}
+                        photos={homePhotoData}
+                        key={photo.id}
+                     />
                   ))}
                </Masonry>
             </InfiniteScroll>

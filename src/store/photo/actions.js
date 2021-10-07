@@ -3,12 +3,20 @@ import {
    CLOSE_PHOTO,
    CLICK_NEXT_PHOTO,
    CLICK_PREVIOUS_PHOTO,
+   COLLECT_PHOTO_ARRAY,
 } from "./types";
 
 export const openPhoto = (photoIndex) => {
    return {
       type: OPEN_PHOTO,
       payload: photoIndex,
+   };
+};
+
+export const collectPhotos = (photoArr) => {
+   return {
+      type: COLLECT_PHOTO_ARRAY,
+      payload: photoArr,
    };
 };
 

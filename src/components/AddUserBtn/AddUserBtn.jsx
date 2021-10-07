@@ -1,7 +1,7 @@
 import React, { useState } from "react";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faUserPlus, faUserCheck } from "@fortawesome/free-solid-svg-icons";
-import { StyledButton } from "./AddUserBtn.style";
+import { StyledButton } from "GlobalStyle";
 
 const AddUserBtn = () => {
    const [userAdded, setUserAdded] = useState(false);

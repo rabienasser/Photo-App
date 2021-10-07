@@ -8,6 +8,7 @@ import {
    Collections,
    UserProfile,
    PhotoPage,
+   Collection,
 } from "pages";
 import { Navbar } from "components";
 import { GlobalStyle } from "GlobalStyle";
@@ -38,6 +39,10 @@ class App extends React.Component {
                      path="/search/collections/:searchTerm"
                      component={Collections}
                      exact
+                  />
+                  <Route
+                     path="/search/collections/:searchTerm/:collectionId"
+                     component={Collection}
                   />
                   <Route path="/photo/:photoId" component={PhotoPage} />
                   <Route path="/user/:userId" component={UserProfile} exact />

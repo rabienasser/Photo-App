@@ -1,13 +1,18 @@
 import { StyledPhoto } from "./Photo.styles";
 import { useDispatch } from "react-redux";
-import { openPhoto } from "store/photo/actions";
+import { openPhoto, collectPhotos } from "store/photo/actions";
 
-const Photo = ({ photo: { urls, description }, index }) => {
+const Photo = ({ photo: { urls, description }, index, photos }) => {
    const dispatch = useDispatch();
 
    return (
       <>
-         <StyledPhoto onClick={() => dispatch(openPhoto(index))}>
+         <StyledPhoto
+            onClick={() => {
+               dispatch(openPhoto(index));
+               dispatch(collectPhotos(photos));
+            }}
+         >
             <img src={urls.small} alt={description} />
          </StyledPhoto>
       </>
