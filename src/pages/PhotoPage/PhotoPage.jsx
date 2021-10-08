@@ -1,21 +1,31 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
 import React, { useEffect, useState, useRef } from "react";
-import star from "assets/star.png";
-import heart from "assets/heart.png";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
 import { useLocation, Link } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 import { loadPhoto } from "store/photoPage/actions";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faDownload } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+   faHeart as fasFaHeart,
+   faStar as fasFaStar,
+   faDownload,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+   faHeart as farFaHeart,
+   faStar as farFaStar,
+} from "@fortawesome/free-regular-svg-icons";
 import { Container } from "GlobalStyle";
 import { StyledImage, User, PhotoDetails, Tags } from "./PhotoPage.style";
+import { heartPhoto, unHeartPhoto } from "store/heartedPhotos/actions";
+library.add(fasFaHeart, farFaHeart, fasFaStar, farFaStar);
 
 const PhotoPage = () => {
    const [zoom, setZoom] = useState(false);
 
    const { data, isLoading } = useSelector((state) => state.photoPage);
+   const { heartedPhotos } = useSelector((state) => state.heartedPhotos);
    const dispatch = useDispatch();
 
    const loadingBar = useRef();
@@ -56,15 +66,32 @@ const PhotoPage = () => {
                />
                <PhotoDetails>
                   <li>
-                     <img src={heart} alt="likes" className="icon" />
-                     {likes?.toLocaleString()}
+                     <FontAwesomeIcon
+                        icon={
+                           heartedPhotos.includes(data?.id)
+                              ? fasFaHeart
+                              : farFaHeart
+                        }
+                        className="icon heart-icon"
+                        onClick={() => {
+                           heartedPhotos.includes(data?.id)
+                              ? dispatch(unHeartPhoto(data))
+                              : dispatch(heartPhoto(data));
+                        }}
+                     />
+                     {heartedPhotos.includes(data?.id)
+                        ? data?.likes + 1
+                        : data?.likes}
                   </li>
                   <li>
                      <FontAwesomeIcon icon={faDownload} className="icon" />
                      {downloads?.toLocaleString()}
                   </li>
                   <li>
-                     <img src={star} alt="favorite" className="icon" />
+                     <FontAwesomeIcon
+                        icon={farFaStar}
+                        className="icon star-icon"
+                     />
                   </li>
                </PhotoDetails>
                <Tags>

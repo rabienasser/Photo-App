@@ -42,9 +42,16 @@ export const GlobalStyle = createGlobalStyle`
    }
 
    .icon {
-      height: 30px;
-      width: 30px;
+      font-size: 30px;
       cursor: pointer;
+   }
+
+   .heart-icon {
+      color: red;
+   }
+
+   .star-icon {
+      color: #ffd300;
    }
 
    .tag {
