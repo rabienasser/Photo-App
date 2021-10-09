@@ -38,12 +38,12 @@ export const Username = styled.div`
 
    h1 {
       font-size: 40px;
-      padding-right: 25px;
       font-weight: 600;
+      margin-right: 25px;
    }
 
    button {
-      margin: auto 0;
+      margin: auto 5px auto 0;
    }
 `;
 

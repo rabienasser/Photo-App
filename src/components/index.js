@@ -8,3 +8,4 @@ export { default as SearchedUser } from "./SearchedUser";
 export { default as SearchedCollection } from "./SearchedCollection";
 export { default as AddUserBtn } from "./AddUserBtn";
 export { default as ProfileOverview } from "./ProfileOverview";
+export { default as MessageModal } from "./MessageModal";

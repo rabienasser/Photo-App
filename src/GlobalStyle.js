@@ -35,6 +35,7 @@ export const GlobalStyle = createGlobalStyle`
    button {
       background: none;
       border: none;
+      cursor: pointer;
    }
 
    li {
@@ -59,6 +60,21 @@ export const GlobalStyle = createGlobalStyle`
          margin-right: 10px;
          background: rgb(238, 238, 238);
          cursor: pointer;
+   }
+
+   .closeBtn {
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+   }
+
+   /* Toast Classnames */
+   .toast {
+      background: var(--purple);
+      color: var(--white);
+   }
+   .toast-progress {
+      background: var(--white);
    }
 `;
 
@@ -109,6 +125,8 @@ export const GridContainer = styled.div`
 `;
 
 export const StyledButton = styled.button`
+   background: ${(props) => props.hire && "var(--purple)"};
+   color: ${(props) => props.hire && "var(--white)"};
    border: 1px solid rgb(209, 209, 209);
    cursor: pointer;
    border-radius: 5px;
@@ -117,7 +135,7 @@ export const StyledButton = styled.button`
    transition: border 0.4s ease;
 
    &:hover {
-      border: 1px solid black;
+      border: ${(props) => (props.hire ? "" : "1px solid black")};
    }
 
    .add-user {

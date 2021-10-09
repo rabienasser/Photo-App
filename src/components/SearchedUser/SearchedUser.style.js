@@ -19,6 +19,10 @@ export const TopRow = styled.div`
    justify-content: space-between;
    align-items: center;
    padding-bottom: 10px;
+
+   button {
+      margin: 0 3px;
+   }
 `;
 
 export const User = styled.div`
