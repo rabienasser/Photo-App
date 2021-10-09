@@ -38,6 +38,12 @@ export const TopRow = styled.div`
    align-items: center;
    justify-content: space-between;
    height: 10%;
+
+   .closeBtn {
+      height: 30px;
+      width: 30px;
+      cursor: pointer;
+   }
 `;
 
 export const RightMarg = styled.div`
@@ -50,6 +56,14 @@ export const RightMarg = styled.div`
    img {
       margin-right: 15px;
       border-radius: 5px;
+   }
+
+   p {
+      margin: auto;
+   }
+
+   .icon {
+      margin-right: 7px;
    }
 `;
 

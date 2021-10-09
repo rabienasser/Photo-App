@@ -1,11 +1,18 @@
 /* eslint-disable jsx-a11y/img-redundant-alt */
-import React from "react";
-import { Link } from "react-router-dom";
+import React, { useState } from "react";
 import close from "assets/close.png";
-import star from "assets/star.png";
-import heart from "assets/heart.png";
+import { Link } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
-import { faArrowAltCircleRight } from "@fortawesome/free-solid-svg-icons";
+import { library } from "@fortawesome/fontawesome-svg-core";
+import {
+   faHeart as fasFaHeart,
+   faStar as fasFaStar,
+   faArrowAltCircleRight,
+} from "@fortawesome/free-solid-svg-icons";
+import {
+   faHeart as farFaHeart,
+   faStar as farFaStar,
+} from "@fortawesome/free-regular-svg-icons";
 import {
    Overlay,
    Modal,
@@ -19,15 +26,19 @@ import {
 } from "./PhotoModal.style";
 import { motion } from "framer-motion";
 import { openModal, displayModalContent, fadePhoto } from "../../animation";
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 import {
    closePhoto,
    clickNextPhoto,
    clickPreviousPhoto,
 } from "store/photo/actions";
+import { heartPhoto, unHeartPhoto } from "store/heartedPhotos/actions";
+library.add(fasFaHeart, farFaHeart, fasFaStar, farFaStar);
 
 const PhotoModal = ({ photos, photoIndex, changePage }) => {
+   const { heartedPhotos } = useSelector((state) => state.heartedPhotos);
    const dispatch = useDispatch();
+
    const photo = photos[photoIndex];
 
    return (
@@ -46,7 +57,7 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                         </Link>
                      </RightMarg>
                      <button onClick={() => dispatch(closePhoto())}>
-                        <img className="icon" src={close} alt="close" />
+                        <img className="closeBtn" src={close} alt="close" />
                      </button>
                   </TopRow>
 
@@ -100,14 +111,29 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
 
                   <BottomRow>
                      <RightMarg>
-                        <img
-                           className="icon"
-                           src={heart}
-                           alt="Number of likes"
+                        <FontAwesomeIcon
+                           icon={
+                              heartedPhotos.includes(photo?.id)
+                                 ? fasFaHeart
+                                 : farFaHeart
+                           }
+                           className="icon heart-icon"
+                           onClick={() => {
+                              heartedPhotos.includes(photo?.id)
+                                 ? dispatch(unHeartPhoto(photo))
+                                 : dispatch(heartPhoto(photo));
+                           }}
                         />
-                        <p>{photo?.likes}</p>
+                        <p>
+                           {heartedPhotos.includes(photo?.id)
+                              ? photo?.likes + 1
+                              : photo?.likes}
+                        </p>
                      </RightMarg>
-                     <img className="icon" src={star} alt="Save to favorites" />
+                     <FontAwesomeIcon
+                        icon={farFaStar}
+                        className="icon star-icon"
+                     />
                   </BottomRow>
                </ModalContent>
             </ContentContainer>
