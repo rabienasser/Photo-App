@@ -6,7 +6,7 @@ export const Heading = styled.div`
    background: ${(props) => props.test};
    div {
       position: relative;
-      z-index: 10;
+      z-index: 1;
    }
 
    ::after {

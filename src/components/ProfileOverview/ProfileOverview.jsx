@@ -1,7 +1,7 @@
 import React, { useState } from "react";
-import { Link, NavLink, useLocation } from "react-router-dom";
+import { Link, NavLink } from "react-router-dom";
 import { useSelector } from "react-redux";
-import { AddUserBtn } from "components";
+import { AddUserBtn, MessageModal } from "components";
 import { library } from "@fortawesome/fontawesome-svg-core";
 import { fab } from "@fortawesome/free-brands-svg-icons";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -14,8 +14,9 @@ import {
    faImage,
    faHeart,
    faLayerGroup,
+   faEnvelope,
 } from "@fortawesome/free-solid-svg-icons";
-import { Container } from "GlobalStyle";
+import { Container, StyledButton } from "GlobalStyle";
 import {
    StyledOverview,
    ProfileImage,
@@ -31,6 +32,8 @@ library.add(fab);
 
 const ProfileOverview = () => {
    const [socialLinks, setSocialLinks] = useState(false);
+   const [messageModal, setMessageModal] = useState(false);
+   const [hireModal, setHireModal] = useState(false);
 
    const {
       profileData: {
@@ -52,6 +55,24 @@ const ProfileOverview = () => {
       },
    } = useSelector((state) => state.userProfile);
 
+   const modalContent = {
+      message: {
+         purpose: "Say Thanks",
+         placeholder: `Hey ${first_name}, I'd like to thank you for sharing your photos on this application. I've used one of them here: __`,
+      },
+      hire: {
+         purpose: "Hiring",
+         placeholder: `Hey ${first_name}, we'd like to hire you to shoot __ and __.`,
+      },
+   };
+
+   const closeMessageModal = () => {
+      setMessageModal(false);
+   };
+   const closeHireModal = () => {
+      setHireModal(false);
+   };
+
    const linkToSocial = (social, username) => {
       return `https://${social}.com/${username}`;
    };
@@ -65,6 +86,14 @@ const ProfileOverview = () => {
                <Username>
                   <h1>{name}</h1>
                   <AddUserBtn />
+                  <StyledButton onClick={() => setMessageModal(true)}>
+                     <FontAwesomeIcon icon={faEnvelope} />
+                  </StyledButton>
+                  {for_hire && (
+                     <StyledButton onClick={() => setHireModal(true)} hire>
+                        Hire
+                     </StyledButton>
+                  )}
                </Username>
                <Bio>
                   <p>{bio}</p>
@@ -222,6 +251,24 @@ const ProfileOverview = () => {
                Collections: {total_collections?.toLocaleString()}
             </NavLink>
          </List>
+         {messageModal && (
+            <MessageModal
+               profileImage={profile_image}
+               name={first_name}
+               purpose={modalContent.message.purpose}
+               placeholder={modalContent.message.placeholder}
+               closeModal={closeMessageModal}
+            />
+         )}
+         {hireModal && (
+            <MessageModal
+               profileImage={profile_image}
+               name={first_name}
+               purpose={modalContent.hire.purpose}
+               placeholder={modalContent.hire.placeholder}
+               closeModal={closeHireModal}
+            />
+         )}
       </Container>
    );
 };

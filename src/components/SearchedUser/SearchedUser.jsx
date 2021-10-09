@@ -1,6 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import { Link } from "react-router-dom";
-import { AddUserBtn } from "components";
+import { AddUserBtn, MessageModal } from "components";
+import { StyledButton } from "GlobalStyle";
 import {
    Container,
    TopRow,
@@ -9,7 +10,20 @@ import {
    User,
 } from "./SearchedUser.style";
 
-const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
+const SearchedUser = ({
+   user: { name, first_name, profile_image, photos, username, for_hire },
+}) => {
+   const [hireModal, setHireModal] = useState(false);
+
+   const modalContent = {
+      purpose: "Say Thanks",
+      placeholder: `Hey ${first_name}, we'd like to hire you to shoot __ and __.`,
+   };
+
+   const closeModal = () => {
+      setHireModal(false);
+   };
+
    return (
       <Container>
          <TopRow>
@@ -20,7 +34,14 @@ const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
                   <p>@{username}</p>
                </div>
             </User>
-            <AddUserBtn />
+            <div>
+               <AddUserBtn />
+               {for_hire && (
+                  <StyledButton onClick={() => setHireModal(true)} hire>
+                     Hire
+                  </StyledButton>
+               )}
+            </div>
          </TopRow>
          <MiddleRow>
             {photos?.map((photo) => (
@@ -34,6 +55,15 @@ const SearchedUser = ({ user: { name, profile_image, photos, username } }) => {
                <button>View Profile</button>
             </Link>
          </BottomRow>
+         {hireModal && (
+            <MessageModal
+               profileImage={profile_image}
+               name={first_name}
+               purpose={modalContent.purpose}
+               placeholder={modalContent.placeholder}
+               closeModal={closeModal}
+            />
+         )}
       </Container>
    );
 };
