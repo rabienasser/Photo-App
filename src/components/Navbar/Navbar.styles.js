@@ -28,7 +28,7 @@ export const NavIcons = styled.ul`
 
    .favorites {
       border-radius: 10px;
-      background: #ffb4bc;
+      background: #ffea75;
    }
 `;
 
