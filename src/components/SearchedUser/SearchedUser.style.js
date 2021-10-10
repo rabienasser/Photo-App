@@ -10,7 +10,7 @@ export const Container = styled.div`
    transition: border 0.4s ease;
 
    &:hover {
-      border: 1px solid black;
+      border: 1px solid ${(props) => props.theme.secondary};
    }
 `;
 
@@ -77,7 +77,7 @@ export const BottomRow = styled.div`
       transition: border 0.4s ease;
 
       &:hover {
-         border: 1px solid black;
+         border: 1px solid ${(props) => props.theme.secondary};
       }
    }
 `;

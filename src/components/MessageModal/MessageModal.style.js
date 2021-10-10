@@ -23,7 +23,7 @@ export const Modal = styled(motion.div)`
    height: 98%;
    width: 35%;
    padding: 30px;
-   background: var(--white);
+   background: ${(props) => props.theme.main};
 
    .purpose {
       width: 100%;
@@ -32,6 +32,9 @@ export const Modal = styled(motion.div)`
       background: #f5f5f5;
       border-radius: 5px;
       margin-top: 5px;
+      p {
+         color: black;
+      }
    }
 `;
 

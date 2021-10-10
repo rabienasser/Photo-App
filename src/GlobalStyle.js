@@ -16,11 +16,17 @@ export const GlobalStyle = createGlobalStyle`
 
    body {
       font-family: 'Poppins', sans-serif;
-      background-color: #F9FAFB;
+      background-color: ${(props) => props.theme.main};
+      color: ${(props) => props.theme.secondary}
+   }
+
+   h1,h2,h3,h4,h5 {
+      color: ${(props) => props.theme.secondary};
    }
 
    p {
       font-size: 16px;
+      color: ${(props) => props.theme.text};
    }
 
    a {
@@ -36,6 +42,7 @@ export const GlobalStyle = createGlobalStyle`
       background: none;
       border: none;
       cursor: pointer;
+      color: ${(props) => props.theme.secondary};
    }
 
    li {
@@ -135,11 +142,11 @@ export const StyledButton = styled.button`
    transition: border 0.4s ease;
 
    &:hover {
-      border: ${(props) => (props.hire ? "" : "1px solid black")};
+      border: 1px solid ${(props) => (props.hire ? "" : props.theme.secondary)};
    }
 
    .add-user {
-      color: black;
+      color: ${(props) => props.theme.secondary};
       height: 100%;
    }
 

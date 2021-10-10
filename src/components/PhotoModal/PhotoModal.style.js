@@ -22,6 +22,7 @@ export const Modal = styled(motion.div)`
    width: 48%;
    padding: 20px;
    background: var(--white);
+   background: ${(props) => props.theme.main};
 `;
 
 export const ContentContainer = styled(motion.div)`
@@ -80,6 +81,7 @@ export const MiddleRow = styled.div`
       height: 25px;
       width: 25px;
       cursor: pointer;
+      color: ${(props) => props.theme.secondary};
    }
 `;
 

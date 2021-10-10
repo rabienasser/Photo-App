@@ -16,7 +16,7 @@ export const StyledMenu = styled.ul`
       color: var(--greyText);
 
       &:hover {
-         color: black;
+         color: ${(props) => props.theme.secondary};
          transition: color 1s ease-out;
       }
 
@@ -26,7 +26,7 @@ export const StyledMenu = styled.ul`
    }
 
    .active {
-      color: black;
+      color: ${(props) => props.theme.secondary};
       border-bottom: 5px solid var(--purple);
 
       @media (max-width: 768px) {

@@ -3,7 +3,7 @@ import styled from "styled-components";
 export const Heading = styled.div`
    position: relative;
    padding: 35px 0 8px;
-   background: ${(props) => props.test};
+   background: ${(props) => props.background};
    div {
       position: relative;
       z-index: 1;
@@ -30,7 +30,7 @@ export const CollectionFlex = styled.div`
    align-items: center;
 
    button {
-      background: var(--white);
+      background: ${(props) => props.theme.main};
       text-align: center;
 
       .share-icon {
@@ -52,6 +52,7 @@ export const CollectionDetails = styled.div`
          margin-bottom: 10px;
          font-size: 40px;
          font-weight: 600;
+         color: black;
       }
       div {
          display: flex;

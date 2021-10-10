@@ -16,6 +16,7 @@ import {
 
 const Navbar = (props) => {
    const [inputValue, setInputValue] = useState("");
+
    const { pathname } = useLocation();
    const splitPathname = pathname.split("/");
 
@@ -62,7 +63,7 @@ const Navbar = (props) => {
                <NavLink to="/favorites" activeClassName="favorites">
                   <NavbarIcon photo={favorites} text="Saved" />
                </NavLink>
-               <NavbarIcon photo={theme} text="Theme" />
+               <NavbarIcon theme photo={theme} text="Theme" />
             </NavIcons>
          </NavContent>
       </StyledNav>
