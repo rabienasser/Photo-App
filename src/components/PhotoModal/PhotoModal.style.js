@@ -55,6 +55,7 @@ export const RightMarg = styled.div`
 
    p {
       margin: auto;
+      color: ${(props) => props.theme.secondary};
    }
 
    .icon {
