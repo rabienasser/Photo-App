@@ -7,6 +7,10 @@ export const PreviewPhotos = styled.div`
    height: 75%;
    transition: opacity 0.2s ease;
 
+   @media (max-width: 500px) {
+      height: 60%;
+   }
+
    &:hover {
       opacity: 0.8;
    }

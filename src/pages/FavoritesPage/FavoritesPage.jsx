@@ -1,5 +1,6 @@
 import React from "react";
 import Masonry from "react-masonry-css";
+import { masonrySearchResultBreakPoints } from "utils/masonryBreakPoints";
 import { useSelector } from "react-redux";
 import { SearchedPhoto } from "components";
 import { Container, SearchResults } from "GlobalStyle";
@@ -13,7 +14,7 @@ const FavoritesPage = () => {
             <Container>
                <SearchResults>
                   <Masonry
-                     breakpointCols={3}
+                     breakpointCols={masonrySearchResultBreakPoints}
                      className="my-masonry-grid"
                      columnClassName="my-masonry-grid_column"
                   >

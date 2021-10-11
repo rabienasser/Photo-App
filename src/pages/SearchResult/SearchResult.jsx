@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
 import "react-toastify/dist/ReactToastify.css";
+import { masonrySearchResultBreakPoints } from "utils/masonryBreakPoints";
 import { motion } from "framer-motion";
 import { slideBottomAnim } from "animation";
 import { SearchedPhoto, SearchMenu } from "components";
@@ -51,7 +52,7 @@ const SearchResult = (props) => {
                      animate="show"
                   >
                      <Masonry
-                        breakpointCols={3}
+                        breakpointCols={masonrySearchResultBreakPoints}
                         className="my-masonry-grid"
                         columnClassName="my-masonry-grid_column"
                      >

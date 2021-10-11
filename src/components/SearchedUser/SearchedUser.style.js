@@ -9,6 +9,14 @@ export const Container = styled.div`
    width: 100%;
    transition: border 0.4s ease;
 
+   @media (max-width: 900px) {
+      width: 75%;
+      margin: auto;
+   }
+   @media (max-width: 650px) {
+      width: 100%;
+   }
+
    &:hover {
       border: 1px solid ${(props) => props.theme.secondary};
    }
@@ -19,6 +27,10 @@ export const TopRow = styled.div`
    justify-content: space-between;
    align-items: center;
    padding-bottom: 10px;
+
+   div {
+      display: flex;
+   }
 
    button {
       margin: 0 3px;

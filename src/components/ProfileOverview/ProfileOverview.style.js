@@ -2,7 +2,10 @@ import styled from "styled-components";
 
 export const StyledOverview = styled.div`
    display: flex;
-   height: 65vh;
+   margin-bottom: 150px;
+   @media (max-width: 900px) {
+      margin-bottom: 120px;
+   }
 `;
 
 export const ProfileImage = styled.div`
@@ -13,12 +16,26 @@ export const ProfileImage = styled.div`
    display: flex;
    justify-content: flex-end;
    align-items: start;
+   @media (max-width: 600px) {
+      padding: 10px 10px 0 0;
+   }
+   @media (max-width: 400px) {
+      padding: 0;
+   }
 
    img {
       border-radius: 50%;
       height: 150px;
       width: 150px;
       object-fit: cover;
+      @media (max-width: 700px) {
+         height: 120px;
+         width: 120px;
+      }
+      @media (max-width: 600px) {
+         height: 100px;
+         width: 100px;
+      }
    }
 `;
 
@@ -26,24 +43,45 @@ export const ProfileDetails = styled.div`
    width: 75%;
    text-align: left;
    padding: 10px 0 24px 24px;
+   @media (max-width: 600px) {
+      padding: 10px 0 10px 10px;
+   }
 
    .interests {
-      padding-bottom: 15px;
+      padding-bottom: 10px;
    }
 `;
 
 export const Username = styled.div`
    display: flex;
+   align-items: center;
    padding-bottom: 15px;
+   @media (max-width: 500px) {
+      flex-direction: column;
+      align-items: flex-start;
+   }
+
+   div {
+      display: flex;
+   }
 
    h1 {
       font-size: 40px;
       font-weight: 600;
       margin-right: 25px;
+      @media (max-width: 600px) {
+         font-size: 30px;
+      }
+      @media (max-width: 500px) {
+         margin-right: 0px;
+      }
    }
 
    button {
-      margin: auto 5px auto 0;
+      margin: auto 8px auto 0;
+      @media (max-width: 500px) {
+         margin: auto 5px auto 0;
+      }
    }
 `;
 
@@ -59,6 +97,15 @@ export const Lists = styled.ul`
    justify-content: space-between;
    padding-bottom: 15px;
    width: 65%;
+   @media (max-width: 900px) {
+      width: 75%;
+   }
+   @media (max-width: 700px) {
+      width: 85%;
+   }
+   @media (max-width: 600px) {
+      width: 100%;
+   }
 `;
 
 export const List = styled.ul`
@@ -129,4 +176,9 @@ export const SocialDropDown = styled.ul`
          color: black;
       }
    }
+`;
+
+export const Tags = styled.ul`
+   display: flex;
+   flex-wrap: wrap;
 `;
