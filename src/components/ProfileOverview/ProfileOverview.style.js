@@ -81,7 +81,7 @@ export const List = styled.ul`
       cursor: pointer;
 
       &:hover {
-         color: black;
+         color: ${(props) => props.theme.secondary};
       }
    }
 
@@ -122,5 +122,11 @@ export const SocialDropDown = styled.ul`
       font-size: 14px;
       color: var(--greyText);
       transition: color 0.3s ease;
+   }
+
+   .social-link {
+      &:hover {
+         color: black;
+      }
    }
 `;

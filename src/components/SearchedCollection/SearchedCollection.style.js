@@ -53,10 +53,6 @@ export const CollectionDescription = styled.div`
       padding-bottom: 5px;
    }
 
-   h3 {
-      color: black;
-   }
-
    ul {
       display: flex;
    }

@@ -5,7 +5,7 @@ export const StyledNav = styled.nav`
    top: 0;
    width: 100%;
    margin: 00 0 20px;
-   background: #f8f8f8;
+   background: ${(props) => props.theme.nav};
    z-index: 10;
 `;
 

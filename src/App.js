@@ -12,12 +12,29 @@ import {
    FavoritesPage,
 } from "pages";
 import { Navbar } from "components";
+import { useSelector } from "react-redux";
 import { GlobalStyle } from "GlobalStyle";
+import { ThemeProvider } from "styled-components";
 import { AnimatePresence } from "framer-motion";
 
-class App extends React.Component {
-   render() {
-      return (
+const lightTheme = {
+   main: "#F9FAFB",
+   secondary: "#121212",
+   nav: "#f8f8f8",
+   navIcon: "var(--greyText)",
+};
+
+const darkTheme = {
+   main: "#121212",
+   secondary: "#f9fafb",
+   nav: "#282828",
+   navIcon: "#fafafa",
+};
+
+const App = () => {
+   const { light } = useSelector((state) => state.themeReducer);
+   return (
+      <ThemeProvider theme={light ? lightTheme : darkTheme}>
          <div className="App">
             <GlobalStyle />
             <ToastContainer />
@@ -55,8 +72,8 @@ class App extends React.Component {
                </Switch>
             </AnimatePresence>
          </div>
-      );
-   }
-}
+      </ThemeProvider>
+   );
+};
 
 export default App;

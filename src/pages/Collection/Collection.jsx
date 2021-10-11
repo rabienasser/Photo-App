@@ -43,7 +43,7 @@ const Collection = (props) => {
    return (
       <>
          <Heading
-            test={`url(${collectionPhotos[0]?.urls.full}) no-repeat center center/cover`}
+            background={`url(${collectionPhotos[0]?.urls.full}) no-repeat center center/cover`}
          >
             <Container>
                <LoadingBar color="#6958f2" ref={loadingBar} />

@@ -10,7 +10,7 @@ export const StyledNavbarIcon = styled.li`
    margin: 0 19px;
 
    p {
-      color: var(--greyText);
+      color: ${(props) => props.theme.navIcon};
       margin-top: 5px;
       cursor: pointer;
    }

@@ -148,7 +148,7 @@ const ProfileOverview = () => {
                                     href={social.portfolio_url}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="link"
+                                    className="link social-link"
                                  >
                                     <FontAwesomeIcon
                                        icon={faGlobeAmericas}
@@ -168,7 +168,7 @@ const ProfileOverview = () => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="link"
+                                    className="link social-link"
                                  >
                                     <FontAwesomeIcon
                                        icon={["fab", "instagram"]}
@@ -187,7 +187,7 @@ const ProfileOverview = () => {
                                     )}
                                     target="_blank"
                                     rel="noopener noreferrer"
-                                    className="link"
+                                    className="link social-link"
                                  >
                                     <FontAwesomeIcon
                                        icon={["fab", "twitter"]}
