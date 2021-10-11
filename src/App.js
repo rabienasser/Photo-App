@@ -9,6 +9,7 @@ import {
    UserProfile,
    PhotoPage,
    Collection,
+   FavoritesPage,
 } from "pages";
 import { Navbar } from "components";
 import { GlobalStyle } from "GlobalStyle";
@@ -24,7 +25,7 @@ class App extends React.Component {
             <AnimatePresence exitBeforeEnter>
                <Switch>
                   <Route path="/" component={Home} exact />
-                  <Route path="/favorites" />
+                  <Route path="/favorites" component={FavoritesPage} />
                   <Route
                      path="/search/:searchTerm"
                      component={SearchResult}

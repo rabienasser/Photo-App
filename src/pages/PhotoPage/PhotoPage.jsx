@@ -19,6 +19,7 @@ import {
 import { Container } from "GlobalStyle";
 import { StyledImage, User, PhotoDetails, Tags } from "./PhotoPage.style";
 import { heartPhoto, unHeartPhoto } from "store/heartedPhotos/actions";
+import { savePhoto, unSavePhoto } from "store/favoritesPage/actions";
 library.add(fasFaHeart, farFaHeart, fasFaStar, farFaStar);
 
 const PhotoPage = () => {
@@ -26,6 +27,7 @@ const PhotoPage = () => {
 
    const { data, isLoading } = useSelector((state) => state.photoPage);
    const { heartedPhotos } = useSelector((state) => state.heartedPhotos);
+   const { savedPhotos } = useSelector((state) => state.savedPhotos);
    const dispatch = useDispatch();
 
    const loadingBar = useRef();
@@ -42,7 +44,9 @@ const PhotoPage = () => {
       dispatch(loadPhoto(photoId));
    }, []);
 
-   const { user, description, urls, tags, likes, downloads } = data;
+   const { user, description, urls, tags, downloads } = data;
+
+   const savedPhotoIDs = savedPhotos.map((photo) => photo.id);
 
    return (
       <>
@@ -89,8 +93,17 @@ const PhotoPage = () => {
                   </li>
                   <li>
                      <FontAwesomeIcon
-                        icon={farFaStar}
+                        icon={
+                           savedPhotoIDs.includes(data?.id)
+                              ? fasFaStar
+                              : farFaStar
+                        }
                         className="icon star-icon"
+                        onClick={() => {
+                           savedPhotoIDs.includes(data?.id)
+                              ? dispatch(unSavePhoto(data))
+                              : dispatch(savePhoto(data));
+                        }}
                      />
                   </li>
                </PhotoDetails>

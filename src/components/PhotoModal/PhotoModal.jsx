@@ -33,13 +33,17 @@ import {
    clickPreviousPhoto,
 } from "store/photo/actions";
 import { heartPhoto, unHeartPhoto } from "store/heartedPhotos/actions";
+import { savePhoto, unSavePhoto } from "store/favoritesPage/actions";
 library.add(fasFaHeart, farFaHeart, fasFaStar, farFaStar);
 
 const PhotoModal = ({ photos, photoIndex, changePage }) => {
    const { heartedPhotos } = useSelector((state) => state.heartedPhotos);
+   const { savedPhotos } = useSelector((state) => state.savedPhotos);
    const dispatch = useDispatch();
 
    const photo = photos[photoIndex];
+
+   const savedPhotoIDs = savedPhotos.map((photo) => photo.id);
 
    return (
       <Overlay>
@@ -131,8 +135,17 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                         </p>
                      </RightMarg>
                      <FontAwesomeIcon
-                        icon={farFaStar}
+                        icon={
+                           savedPhotoIDs.includes(photo?.id)
+                              ? fasFaStar
+                              : farFaStar
+                        }
                         className="icon star-icon"
+                        onClick={() => {
+                           savedPhotoIDs.includes(photo?.id)
+                              ? dispatch(unSavePhoto(photo))
+                              : dispatch(savePhoto(photo));
+                        }}
                      />
                   </BottomRow>
                </ModalContent>

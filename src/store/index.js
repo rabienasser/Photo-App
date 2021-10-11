@@ -10,6 +10,7 @@ import userProfileReducer from "./userProfile/userProfileReducer";
 import photoPageReducer from "./photoPage/photoPageReducer";
 import collectionPageReducer from "./collectionPage/collectionPageReducer";
 import heartedPhotosReducer from "./heartedPhotos/heartedPhotosReducer";
+import favoritesPageReducer from "./favoritesPage/favoritesPageReducer";
 
 const rootReducer = combineReducers({
    homePhotos: homePhotosReducer,
@@ -21,6 +22,7 @@ const rootReducer = combineReducers({
    photoPage: photoPageReducer,
    collectionPage: collectionPageReducer,
    heartedPhotos: heartedPhotosReducer,
+   savedPhotos: favoritesPageReducer,
 });
 
 export const store = createStore(rootReducer, applyMiddleware(thunk));

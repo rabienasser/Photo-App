@@ -2,8 +2,8 @@ import React, { useState } from "react";
 import homePage from "assets/home-page.png";
 import search from "assets/search.png";
 import camera from "assets/camera.png";
-import favorites from "assets/favorites.png";
 import theme from "assets/theme.png";
+import favorites from "assets/favorites.png";
 import { Link, NavLink, withRouter, useLocation } from "react-router-dom";
 import { NavbarIcon } from "components";
 import {

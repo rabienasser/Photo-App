@@ -4,7 +4,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
 import "react-toastify/dist/ReactToastify.css";
-import { toast } from "react-toastify";
 import { motion } from "framer-motion";
 import { slideBottomAnim } from "animation";
 import { SearchedPhoto, SearchMenu } from "components";
