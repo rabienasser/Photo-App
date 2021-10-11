@@ -3,6 +3,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
+import { masonryColumnBreakPoints } from "utils/masonryBreakPoints";
 import { Link } from "react-router-dom";
 import { Photo, PhotoModal } from "components";
 import { useDispatch, useSelector } from "react-redux";
@@ -79,7 +80,7 @@ const Collection = (props) => {
                hasMore={true}
             >
                <Masonry
-                  breakpointCols={3}
+                  breakpointCols={masonryColumnBreakPoints}
                   className="my-masonry-grid"
                   columnClassName="my-masonry-grid_column"
                >
