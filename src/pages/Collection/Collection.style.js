@@ -27,11 +27,12 @@ export const Heading = styled.div`
 export const CollectionFlex = styled.div`
    display: flex;
    justify-content: space-between;
-   align-items: center;
+   align-items: flex-start;
 
    button {
       background: ${(props) => props.theme.main};
       text-align: center;
+      margin: 10px;
 
       .share-icon {
          margin-right: 5px;
@@ -42,8 +43,6 @@ export const CollectionFlex = styled.div`
 export const CollectionDetails = styled.div`
    display: flex;
    flex-direction: column;
-   justify-content: space-between;
-   align-items: flex-start;
    text-align: left;
 
    div:first-child {

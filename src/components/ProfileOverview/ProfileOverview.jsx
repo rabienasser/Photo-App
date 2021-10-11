@@ -26,6 +26,7 @@ import {
    Bio,
    Lists,
    List,
+   Tags,
 } from "./ProfileOverview.style";
 
 library.add(fab);
@@ -84,16 +85,20 @@ const ProfileOverview = () => {
             </ProfileImage>
             <ProfileDetails>
                <Username>
-                  <h1>{name}</h1>
-                  <AddUserBtn />
-                  <StyledButton onClick={() => setMessageModal(true)}>
-                     <FontAwesomeIcon icon={faEnvelope} />
-                  </StyledButton>
-                  {for_hire && (
-                     <StyledButton onClick={() => setHireModal(true)} hire>
-                        Hire
+                  <div>
+                     <h1>{name}</h1>
+                  </div>
+                  <div>
+                     <AddUserBtn />
+                     <StyledButton onClick={() => setMessageModal(true)}>
+                        <FontAwesomeIcon icon={faEnvelope} />
                      </StyledButton>
-                  )}
+                     {for_hire && (
+                        <StyledButton onClick={() => setHireModal(true)} hire>
+                           Hire
+                        </StyledButton>
+                     )}
+                  </div>
                </Username>
                <Bio>
                   <p>{bio}</p>
@@ -207,8 +212,10 @@ const ProfileOverview = () => {
                   </List>
                </Lists>
                <div>
-                  {tags?.length && <p className="interests">Interests</p>}
-                  <ul>
+                  {tags?.custom.length && (
+                     <p className="interests">Interests</p>
+                  )}
+                  <Tags>
                      {tags?.custom.map((tag) => (
                         <Link
                            to={`/search/${tag.title}`}
@@ -218,7 +225,7 @@ const ProfileOverview = () => {
                            {tag.title}
                         </Link>
                      ))}
-                  </ul>
+                  </Tags>
                </div>
             </ProfileDetails>
          </StyledOverview>

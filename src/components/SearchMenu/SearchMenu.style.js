@@ -7,12 +7,12 @@ export const StyledMenu = styled.ul`
 
    div {
       width: 33.33%;
+      text-align: center;
    }
 
    li {
       font-size: 32px;
       text-align: center;
-      margin-left: -25px;
       color: var(--greyText);
 
       &:hover {
@@ -20,8 +20,11 @@ export const StyledMenu = styled.ul`
          transition: color 1s ease-out;
       }
 
-      @media (max-width: 768px) {
-         font-size: 16px;
+      @media (max-width: 650px) {
+         font-size: 25px;
+      }
+      @media (max-width: 450px) {
+         font-size: 20px;
       }
    }
 
@@ -29,7 +32,7 @@ export const StyledMenu = styled.ul`
       color: ${(props) => props.theme.secondary};
       border-bottom: 5px solid var(--purple);
 
-      @media (max-width: 768px) {
+      @media (max-width: 650px) {
          border-bottom: 3px solid var(--purple);
       }
    }

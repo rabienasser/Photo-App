@@ -64,7 +64,7 @@ export const GlobalStyle = createGlobalStyle`
 
    .tag {
       padding: 0 8px;
-         margin-right: 10px;
+         margin: 5px;
          background: rgb(238, 238, 238);
          cursor: pointer;
    }
@@ -92,6 +92,9 @@ export const Container = styled.div`
 
    @media (max-width: 1300px) {
       width: 80%;
+   }
+   @media (max-width: 1100px) {
+      width: 95%;
    }
 
    .my-masonry-grid {

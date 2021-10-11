@@ -25,6 +25,18 @@ export const Modal = styled(motion.div)`
    padding: 30px;
    background: ${(props) => props.theme.main};
 
+   @media (max-width: 1100px) {
+      width: 55%;
+   }
+   @media (max-width: 769px) {
+      height: 90%;
+      width: 70%;
+   }
+   @media (max-width: 550px) {
+      width: 100%;
+      height: 100%;
+   }
+
    .purpose {
       width: 100%;
       padding: 8px 12px;

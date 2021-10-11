@@ -22,6 +22,10 @@ export const StyledImage = styled.img`
    &:hover {
       cursor: ${(props) => props.cursor};
    }
+
+   @media (max-width: 550px) {
+      width: 100%;
+   }
 `;
 
 export const PhotoDetails = styled.ul`
@@ -29,6 +33,9 @@ export const PhotoDetails = styled.ul`
    justify-content: space-evenly;
    margin: 0 auto 20px;
    width: 50%;
+   @media (max-width: 750px) {
+      width: 100%;
+   }
 
    li {
       display: flex;
@@ -43,4 +50,7 @@ export const PhotoDetails = styled.ul`
 
 export const Tags = styled.ul`
    margin-bottom: 20px;
+   display: flex;
+   justify-content: center;
+   flex-wrap: wrap;
 `;

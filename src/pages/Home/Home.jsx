@@ -4,6 +4,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import Masonry from "react-masonry-css";
 import LoadingBar from "react-top-loading-bar";
 import useLoadingBar from "utils/loadingBar";
+import { masonryColumnBreakPoints } from "utils/masonryBreakPoints";
 import { pageAnimation } from "animation";
 import { motion } from "framer-motion";
 import { Photo, PhotoModal } from "components";
@@ -48,7 +49,7 @@ const Home = () => {
                loader={<h4>Loading...</h4>}
             >
                <Masonry
-                  breakpointCols={3}
+                  breakpointCols={masonryColumnBreakPoints}
                   className="my-masonry-grid"
                   columnClassName="my-masonry-grid_column"
                >

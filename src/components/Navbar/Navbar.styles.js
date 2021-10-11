@@ -4,7 +4,7 @@ export const StyledNav = styled.nav`
    position: sticky;
    top: 0;
    width: 100%;
-   margin: 00 0 20px;
+   margin-bottom: 20px;
    background: ${(props) => props.theme.nav};
    z-index: 10;
 `;
@@ -16,6 +16,15 @@ export const NavContent = styled.div`
    align-items: center;
    margin: auto;
    padding: 7px 0;
+
+   @media (max-width: 1000px) {
+      width: 85%;
+   }
+
+   @media (max-width: 650px) {
+      width: 95%;
+      padding: 15px 0;
+   }
 `;
 
 export const NavIcons = styled.ul`
@@ -37,10 +46,15 @@ export const HomeIcon = styled.img`
    width: 49px;
    border-radius: 5px;
    cursor: pointer;
+   @media (max-width: 500px) {
+      height: 40px;
+      width: 40px;
+   }
 `;
 
 export const SearchInput = styled.div`
    display: flex;
+   align-items: center;
    width: 50%;
 
    form {
@@ -50,6 +64,10 @@ export const SearchInput = styled.div`
       align-items: center;
       margin-left: 35px;
       border-radius: 5px;
+      @media (max-width: 650px) {
+         margin-left: 10px;
+         height: 100%;
+      }
 
       img {
          height: 23px;
@@ -58,6 +76,10 @@ export const SearchInput = styled.div`
          padding-left: 5px;
          border-bottom-left-radius: 5px;
          border-top-left-radius: 5px;
+         @media (max-width: 500px) {
+            height: 15px;
+            width: 20px;
+         }
       }
 
       input {
@@ -70,6 +92,9 @@ export const SearchInput = styled.div`
          border: none;
          border-bottom-right-radius: 5px;
          border-top-right-radius: 5px;
+         @media (max-width: 650px) {
+            margin: 0;
+         }
       }
    }
 `;

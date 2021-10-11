@@ -1,5 +1,7 @@
 import { combineReducers, createStore, applyMiddleware } from "redux";
 import thunk from "redux-thunk";
+import { persistStore, persistReducer } from "redux-persist"; //Redux local storage
+import storage from "redux-persist/lib/storage";
 
 import homePhotosReducer from "./homePhotos/homePhotosReducer";
 import photoReducer from "./photo/photoReducer";
@@ -27,4 +29,13 @@ const rootReducer = combineReducers({
    themeReducer,
 });
 
-export const store = createStore(rootReducer, applyMiddleware(thunk));
+const persistConfig = {
+   key: "root",
+   storage,
+   whitelist: ["themeReducer", "heartedPhotos", "savedPhotos"],
+};
+
+const persistedReducer = persistReducer(persistConfig, rootReducer);
+
+export const store = createStore(persistedReducer, applyMiddleware(thunk));
+export const persistor = persistStore(store);

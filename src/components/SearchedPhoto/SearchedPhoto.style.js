@@ -6,6 +6,18 @@ export const StyledPhoto = styled.div`
    width: 265px;
    margin: 20px 0;
    cursor: pointer;
+   @media (max-width: 600px) {
+      height: 220px;
+      width: 220px;
+   }
+   @media (max-width: 500px) {
+      height: 180px;
+      width: 180px;
+   }
+   @media (max-width: 400px) {
+      height: 265px;
+      width: 265px;
+   }
 
    img {
       display: block;
