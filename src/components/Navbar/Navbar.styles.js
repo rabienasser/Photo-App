@@ -46,9 +46,8 @@ export const HomeIcon = styled.img`
    width: 49px;
    border-radius: 5px;
    cursor: pointer;
-   @media (max-width: 500px) {
-      height: 40px;
-      width: 40px;
+   @media (max-width: 650px) {
+      display: none;
    }
 `;
 
