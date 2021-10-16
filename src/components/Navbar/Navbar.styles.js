@@ -66,6 +66,7 @@ export const SearchInput = styled.div`
          padding-left: 5px;
          border-bottom-left-radius: 5px;
          border-top-left-radius: 5px;
+         color: ${(props) => props.theme.inputText};
          @media (max-width: 500px) {
             height: 15px;
             width: 20px;
