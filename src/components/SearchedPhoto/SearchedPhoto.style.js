@@ -2,21 +2,12 @@ import styled from "styled-components";
 
 export const StyledPhoto = styled.div`
    position: relative;
-   height: 265px;
-   width: 265px;
+   height: 350px;
    margin: 20px 0;
    cursor: pointer;
+
    @media (max-width: 600px) {
-      height: 220px;
-      width: 220px;
-   }
-   @media (max-width: 500px) {
-      height: 180px;
-      width: 180px;
-   }
-   @media (max-width: 400px) {
-      height: 265px;
-      width: 265px;
+      height: 300px;
    }
 
    img {

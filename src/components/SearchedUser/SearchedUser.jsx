@@ -27,7 +27,7 @@ const SearchedUser = ({
    return (
       <Container>
          <TopRow>
-            <User>
+            <User to={`/user/${username}`}>
                <img src={profile_image?.medium} alt={username} />
                <div>
                   <h5>{name}</h5>

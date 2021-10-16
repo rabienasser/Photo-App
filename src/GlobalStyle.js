@@ -127,7 +127,7 @@ export const GridContainer = styled.div`
    grid-template-columns: repeat(2, 1fr);
    grid-auto-rows: ${(props) => props.autoRows && "400px"};
    grid-gap: 30px;
-   padding: 20px;
+   padding: 20px 0;
 
    @media (max-width: 900px) {
       grid-template-columns: repeat(1, 1fr);

@@ -21,6 +21,7 @@ import {
    TopRow,
    RightMarg,
    MiddleRow,
+   ImageContainer,
    StyledImage,
    BottomRow,
 } from "./PhotoModal.style";
@@ -84,16 +85,18 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                            rotation={180}
                         />
                      </motion.button>
-                     <Link to={`/photo/${photo?.id}`}>
-                        <StyledImage
-                           variants={fadePhoto}
-                           initial="hidden"
-                           animate="visible"
-                           key={photo?.id}
-                           src={photo?.urls.small}
-                           alt={photo?.description}
-                        />
-                     </Link>
+                     <ImageContainer>
+                        <Link to={`/photo/${photo?.id}`}>
+                           <StyledImage
+                              variants={fadePhoto}
+                              initial="hidden"
+                              animate="visible"
+                              key={photo?.id}
+                              src={photo?.urls.small}
+                              alt={photo?.description}
+                           />
+                        </Link>
+                     </ImageContainer>
                      <motion.button
                         onClick={() => {
                            dispatch(clickNextPhoto());
