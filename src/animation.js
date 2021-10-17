@@ -21,7 +21,7 @@ export const pageAnimation = {
 
 export const slideBottomAnim = {
    hidden: {
-      y: 800,
+      y: 300,
    },
    show: {
       y: 0,
@@ -33,7 +33,7 @@ export const slideBottomAnim = {
 
 export const slideLeftAnim = {
    hidden: {
-      x: 1000,
+      x: 300,
    },
    show: {
       x: 0,
@@ -44,7 +44,7 @@ export const slideLeftAnim = {
 };
 export const slideRightAnim = {
    hidden: {
-      x: -1000,
+      x: -300,
    },
    show: {
       x: 0,
