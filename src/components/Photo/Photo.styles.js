@@ -13,7 +13,7 @@ export const StyledPhoto = styled.div`
       transition: transform 4s ease-in-out;
 
       &:hover {
-         transform: scale(1.5);
+         transform: scale(1.1);
       }
    }
 `;

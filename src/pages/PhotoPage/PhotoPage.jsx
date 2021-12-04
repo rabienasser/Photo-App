@@ -23,7 +23,7 @@ import { savePhoto, unSavePhoto } from "store/favoritesPage/actions";
 library.add(fasFaHeart, farFaHeart, fasFaStar, farFaStar);
 
 const PhotoPage = () => {
-   const [zoom, setZoom] = useState(false);
+   const [zoom, setZoom] = useState(true);
 
    const { data, isLoading } = useSelector((state) => state.photoPage);
    const { heartedPhotos } = useSelector((state) => state.heartedPhotos);

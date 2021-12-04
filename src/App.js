@@ -22,13 +22,19 @@ const lightTheme = {
    secondary: "#121212",
    nav: "#f8f8f8",
    navIcon: "var(--greyText)",
+   inputBackground: "var(--white)",
+   inputBoder: "none",
+   inputText: "var(--greyText)",
 };
 
 const darkTheme = {
    main: "#121212",
    secondary: "#f9fafb",
-   nav: "#282828",
+   nav: "#1f1f1f",
    navIcon: "#fafafa",
+   inputBackground: "#1f1f1f",
+   inputBorder: "1px solid var(--greyText)",
+   inputText: "#f9fafb",
 };
 
 const App = () => {

@@ -18,8 +18,8 @@ export const Modal = styled(motion.div)`
    display: flex;
    flex-direction: column;
    justify-content: space-between;
-   height: 82%;
-   width: 48%;
+   height: 90%;
+   width: 60%;
    padding: 20px;
    background: var(--white);
    background: ${(props) => props.theme.main};
@@ -84,8 +84,6 @@ export const MiddleRow = styled.div`
    height: 80%;
 
    a {
-      width: 100%;
-      height: 100%;
       display: flex;
       align-items: center;
       justify-content: center;
@@ -103,10 +101,17 @@ export const MiddleRow = styled.div`
    }
 `;
 
+export const ImageContainer = styled.div`
+   height: 100%;
+   width: 90%;
+   display: flex;
+   justify-content: center;
+`;
+
 export const StyledImage = styled(motion.img)`
-   max-width: 100%;
-   max-height: 100%;
-   object-fit: cover;
+   width: 100%;
+   height: 100%;
+   object-fit: contain;
    cursor: pointer;
 `;
 

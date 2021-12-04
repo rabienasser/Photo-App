@@ -1,4 +1,5 @@
 import styled from "styled-components";
+import { Link } from "react-router-dom";
 
 export const Container = styled.div`
    display: flex;
@@ -37,7 +38,7 @@ export const TopRow = styled.div`
    }
 `;
 
-export const User = styled.div`
+export const User = styled(Link)`
    display: flex;
    align-items: center;
 
@@ -53,6 +54,7 @@ export const User = styled.div`
       display: flex;
       flex-direction: column;
       text-align: left;
+      color: ${(props) => props.theme.secondary};
 
       h5 {
          font-size: 16px;

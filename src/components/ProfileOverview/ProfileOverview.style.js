@@ -116,7 +116,7 @@ export const List = styled.ul`
    a {
       padding-bottom: 8px;
       font-size: 14px;
-      color: var(--greyText);
+      color: ${(props) => props.theme.inputText};
       transition: color 0.3s ease;
    }
 
