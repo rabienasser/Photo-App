@@ -53,12 +53,12 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                <ModalContent>
                   <TopRow>
                      <RightMarg>
-                        <Link to={`/user/${photo?.user.username}`}>
+                        <Link to={`/user/${photo?.user?.username}`}>
                            <img
-                              src={photo?.user.profile_image.small}
-                              alt={photo?.user.name}
+                              src={photo?.user?.profile_image?.small}
+                              alt={photo?.user?.name}
                            />
-                           <p>{photo?.user.name}</p>
+                           <p>{photo?.user?.name}</p>
                         </Link>
                      </RightMarg>
                      <button onClick={() => dispatch(closePhoto())}>
@@ -92,7 +92,7 @@ const PhotoModal = ({ photos, photoIndex, changePage }) => {
                               initial="hidden"
                               animate="visible"
                               key={photo?.id}
-                              src={photo?.urls.small}
+                              src={photo?.urls?.small}
                               alt={photo?.description}
                            />
                         </Link>
