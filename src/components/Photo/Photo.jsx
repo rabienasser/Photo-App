@@ -13,7 +13,7 @@ const Photo = ({ photo: { urls, description }, index, photos }) => {
                dispatch(collectPhotos(photos));
             }}
          >
-            <img src={urls.small} alt={description} />
+            <img src={urls?.small} alt={description} />
          </StyledPhoto>
       </>
    );
